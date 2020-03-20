@@ -1,0 +1,14 @@
+footer {
+    background-color: #1A9827;
+    width: 100%;
+    height: 80px;
+    color: white;
+}
+
+footer * {
+    margin: 50px;
+}
+
+footer p {
+    margin-top: 20px;
+}

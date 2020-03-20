@@ -1,0 +1,22 @@
+header {
+    background-color: #1A9827;
+    width: 100%;
+    height: 100px;
+}
+
+header * {
+    display: inline-block;
+    margin: auto 30px;
+    color: white;
+}
+
+#logo {
+    display: inline;
+    font-size: 32px;
+    margin-right: auto;
+}
+
+#navegacao {
+    display: inline;
+    margin-left: auto;
+}

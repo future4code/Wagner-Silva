@@ -1,0 +1,13 @@
+section h1 {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+section table {
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+table, table * {
+    border: 1px solid black;
+}
