@@ -35,10 +35,6 @@ div>p:first-child {
     padding-top: 50px;
 }
 
-div img {
-    background: black;
-}
-
 .botao-amarelo {
     background-color: #ffaf43;
     width: 250px;
@@ -59,7 +55,8 @@ div img {
 }
 
 .icone {
-    height: 15px;
+    width: 30px
+    height: 20px;
 }
 
 
