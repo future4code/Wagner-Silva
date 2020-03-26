@@ -74,3 +74,36 @@ header {
     align-items: center;
     border: 1px solid black;
 }
+
+@media screen and (min-device-width: 320px) and (max-device-width: 420px) {
+    .content, #div-colorida, .div-preta, .div-transparente {
+        grid-template-columns: 1fr;
+    }
+
+    #div-colorida {
+        grid-template-rows: repeat(6, 1fr);
+    }
+
+    .div-preta {
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .div-preta div {
+        grid-column: 1 / 2;
+    }
+
+    .div-transparente {
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 421px) and (max-width: 800px) {
+    #div-colorida {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+    
+    #green1, #green2 {
+        grid-column: 1 / 3;
+    }
+}
