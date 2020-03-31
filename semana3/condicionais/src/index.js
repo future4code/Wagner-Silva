@@ -18,7 +18,7 @@
 
 
 /* EXERCÍCIO 4A */
-/*n1 = prompt("Digite um número:");
+n1 = prompt("Digite um número:");
 n2 = prompt("Digite outro número:");
 
 if(Number(n1) > Number(n2)) {
@@ -27,10 +27,10 @@ if(Number(n1) > Number(n2)) {
 } else {             // ESTE ELSE SERÁ
    console.log(n2);  // IMPRESSO QUANDO OS
    console.log(n1);  // NÚMEROS FOREM IGUAIS
-}*/
+}
 
 /* EXERCÍCIO 4B */
-/*n1 = prompt("Digite um número:");
+n1 = prompt("Digite um número:");
 n2 = prompt("Digite outro número:");
 n3 = prompt("Digite mais um número:");
 
@@ -62,11 +62,11 @@ if(Number(n1) > Number(n2) && Number(n1) > Number(n3)) {
       console.log(n2);
       console.log(n1);
    }
-}*/
+}
 
 
 /* EXERCÍCIO 4C */
-/*
+
 n1 = prompt("Digite um número:");
 n2 = prompt("Digite outro número:");
 n3 = prompt("Digite mais um número:");
@@ -101,13 +101,13 @@ if((Number(n1) === Number(n2)) && (Number(n2) === Number(n3))) {
       console.log(n2);
       console.log(n1);
    }
-}*/
+}
 
 /* EXERCÍCIO 5 
    Link da árvore condicional: https://drive.google.com/file/d/1DlX9iYdSfgtol1EK2L1ToLZ8wXrm6bNM/view?usp=sharing
 */
 
-/*let animal;
+let animal;
 
 const ossos = prompt("Este animal possui ossos ? (s para sim e n para não)");
 if(ossos === 's') {
@@ -141,7 +141,7 @@ if(ossos === 's') {
    animal = "Invertebrado";
 }
 
-alert("O animal é " + animal);*/
+alert("O animal é " + animal);
 
 /* RESOLUÇÃO DO DESAFIO */
 
