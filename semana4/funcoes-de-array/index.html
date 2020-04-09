@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="script.js" defer></script>
+        <title>Controlador de despesas</title>
+    </head>
+    <body>
+        <div class="container">
+            <main>
+                <div class="content" id="cadastro">
+                    <h1>Controlador de despesas</h1>
+                    <h3>Cadastro de despesas</h3>
+                    <div id="formulario">
+                        <label for="valor">Valor</label>
+                        <input class="input-cadastro" type="number" id="valor" name="valor">
+                        <label for="tipo-cadastro">Tipo</label>
+                        <select id="tipo-cadastro" name="tipo-cadastro">
+                            <option value="casa">Casa</option>
+                            <option value="busao">Busão</option>
+                            <option value="saude">Saúde</option>
+                            <option value="alimentacao">Alimentação</option>
+                            <option value="lazer">Lazer</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <label for="descricao">Descrição</label>
+                        <input class="input-cadastro" type="text" id="descricao" name="descricao">
+                        <button onclick="cadastraDespesa()">Cadastrar Despesa</button>
+                    </div>
+                </div>
+                <div class="content" id="detalhes-despesas">
+                    <h1>Despesas Detalhadas</h1>
+                    <div id="formulario">
+                        <label for="tipo-detalhes">Tipo</label>
+                        <select id="tipo-detalhes" name="tipo-detalhes">
+                            <option value="casa">Casa</option>
+                            <option value="busao">Busão</option>
+                            <option value="saude">Saúde</option>
+                            <option value="alimentacao">Alimentação</option>
+                            <option value="lazer">Lazer</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <label for="valor-minimo">Valor mínimo</label>
+                        <input class="input-detalhes" type="number" id="valor-minimo" name="valor-minimo">
+                        <label for="valor-maximo">Valor máximo</label>
+                        <input class="input-detalhes" type="number" id="valor-maximo" name="valor-maximo">
+                        <div id="botoes">
+                            <button id="filtrar">Filtrar</button>
+                            <button id="limpar-filtros">Limpar Filtros</button>
+                        </div>
+                    </div>
+                    <div id="detalhes">
+
+                    </div>
+                </div>
+                <div class="content" id="extrato">
+                    <h1>Extrato</h1>
+                    <section id="valores">
+                        <article id="casa">
+                            <h3>Casa:</h3>
+                        </article>
+                        <article id="busao">
+                            <h3>Busão:</h3>
+                        </article>
+                        <article id="saude">
+                            <h3>Saúde:</h3>
+                        </article>
+                        <article id="alimentacao">
+                            <h3>Alimentação:</h3>
+                        </article>
+                        <article id="lazer">
+                            <h3>Lazer:</h3>
+                        </article>
+                        <article id="outros">
+                            <h3>Outros:</h3>
+                        </article>
+                        <div id="valor-total">
+                            <h3>Valor total:</h3>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
