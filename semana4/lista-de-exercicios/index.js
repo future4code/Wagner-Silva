@@ -122,3 +122,5 @@ function exercicio1(numeros) {
     console.log(segundoMaior(numeros));
     console.log(segundoMenor(numeros));
 }
+
+exercicio1([4,1,8,9,3,2,10]);
