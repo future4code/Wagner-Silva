@@ -45,12 +45,45 @@
 // }
 
 /* EXERCÍCIO 3 */
-function classificacaoDeTriangulo(a, b, c) {
-    if(a === b && b === c) {
-        return "Equilátero";
-    } else if(a === b || b === c || a === c) {
-        return "Isósceles";
+// function classificacaoDeTriangulo(a, b, c) {
+//     if(a === b && b === c) {
+//         return "Equilátero";
+//     } else if(a === b || b === c || a === c) {
+//         return "Isósceles";
+//     } else {
+//         return "Escaleno";
+//     }
+// }
+
+/* EXERCÍCIO 4 */
+function maior(a, b) {
+    if(a > b) return a;
+    else return b;
+}
+
+function diviseis(a, b) {
+    return a % b === 0;
+}
+
+function diferenca(a, b) {
+    return Math.abs(a -b);
+}
+
+function exercicio4(a, b) {
+    console.log(`ENTRADA:\n${a} e ${b}\n`);
+    console.log(`SAÍDA:\nO maior é ${maior(a, b)}`);
+
+    if(diviseis(a, b)) {
+        console.log(`${a} é divisível por ${b}`);
     } else {
-        return "Escaleno";
+        console.log(`${a} não é divisível por ${b}`);
     }
+
+    if(diviseis(b, a)) {
+        console.log(`${b} é divisível por ${a}`);
+    } else {
+        console.log(`${b} não é divisível por ${a}`);
+    }
+
+    console.log(`A diferença entre eles é ${diferenca(a, b)}`);
 }
