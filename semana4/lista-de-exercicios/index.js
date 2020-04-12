@@ -164,20 +164,47 @@
 // filmeFavorito(filme);
 
 /* EXERCÍCIO 4 */
-const pessoa = {
-    nome: "Wagner",
-    idade: 21,
-    email: "wagner@email.com",
-    endereco: "Cuitegi-PB",
-}
+// const pessoa = {
+//     nome: "Wagner",
+//     idade: 21,
+//     email: "wagner@email.com",
+//     endereco: "Cuitegi-PB",
+// }
 
-function anonimizarPessoa(pessoa) {
-    return {
-        ...pessoa,
-        nome: "ANÔNIMO"
+// function anonimizarPessoa(pessoa) {
+//     return {
+//         ...pessoa,
+//         nome: "ANÔNIMO"
+//     }
+// }
+
+// novoObj = anonimizarPessoa(pessoa);
+// console.log(pessoa);
+// console.log(novoObj);
+
+
+/* AULA 16 - CALLBACK E FUNÇÕES DE ARRAY */
+/* EXERCÍCIO 1
+   Antes das funções de array podíamos iterar através de while, for ou for...of.
+   Abaixo há um exemplo.
+*/
+function iteracaoEmArrays() {
+    const array = [1, 2, 3];
+
+    /* Iteração com while */
+    let n = 0;
+    while(n < array.length) {
+        console.log(array[n]);
+        n++;
+    }
+
+    /* Iteração com for */
+    for(let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+    }
+
+    /* Iteração com for..of */
+    for(let elemento of array) {
+        console.log(elemento);
     }
 }
-
-novoObj = anonimizarPessoa(pessoa);
-console.log(pessoa);
-console.log(novoObj);
