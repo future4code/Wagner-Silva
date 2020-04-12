@@ -32,3 +32,14 @@
    d. true;
    e. true;
 */
+
+/* EXERCÍCIO 2
+   O código está completamente errado. Primeiro que no while a variável quantidadeDeNumerosPares está
+   undefined no momento da comparação; e segundo que não há nenhuma comparação se o número é par ou não.
+   Abaixo está a implementação correta da função.
+*/
+function quantidadeDeNumerosPares(quantidade) {
+    for(let i = 0; i < quantidade * 2; i += 2) {
+        console.log(i);
+    }
+}
