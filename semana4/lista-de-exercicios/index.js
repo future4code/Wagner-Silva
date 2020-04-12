@@ -259,12 +259,14 @@ const pessoas = [
 	{ nome: "Soter", idade: 70, altura: 1.9}
 ];
 
+/* a. */
 const pessoasPermitidas = pessoas.filter(pessoa => {
     if(pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade < 60) {
         return pessoa;
     }
 });
 
+/* b. */
 const pessoasNaoPermitidas = pessoas.filter(pessoa => {
     if(!(pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade < 60)) {
         return pessoa;
