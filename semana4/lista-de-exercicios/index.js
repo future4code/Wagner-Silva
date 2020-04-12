@@ -21,3 +21,14 @@
    infinito, ele guardará o menor no número ao final da iteração; numero2 inicia-se como 0, portanto
    guardará o maior número.
 */
+
+
+/* EXERCÍCIOS DE LÓGICA DE PROGRAMAÇÃO 
+
+   EXERCÍCIO 1
+   a. false;
+   b. false;
+   c. true;
+   d. true;
+   e. true;
+*/
