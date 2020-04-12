@@ -138,3 +138,13 @@
    (não necessariamente em ordem); objetos são estruturas de dados mais robustas, onde podem ser
    guardados tipos diferentes, além de poder guardar funções.
 */
+
+/* EXERCÍCIO 2 */
+function criaRetangulo(lado1, lado2) {
+    return {
+        largura: lado1,
+        altura: lado2,
+        perimetro: 2 * (lado1 + lado2),
+        area: lado1 * lado2
+    }
+}
