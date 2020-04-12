@@ -92,35 +92,42 @@
 /* AULA 15 - Objetos, Strings e Arrays */
 /* EXERCÍCIOS DE FUNÇÕES */
 /* EXERCÍCIO 1 */
-function segundoMaior(numeros) {
-    let maior = Math.max(...numeros);
-    let segundoMaior = Math.min(...numeros);
+// function segundoMaior(numeros) {
+//     let maior = Math.max(...numeros);
+//     let segundoMaior = Math.min(...numeros);
 
-    for(let numero of numeros) {
-        if(numero > segundoMaior && numero < maior) {
-            segundoMaior = numero;
-        }
-    }
+//     for(let numero of numeros) {
+//         if(numero > segundoMaior && numero < maior) {
+//             segundoMaior = numero;
+//         }
+//     }
 
-    return segundoMaior;
-}
+//     return segundoMaior;
+// }
 
-function segundoMenor(numeros) {
-    let menor = Math.min(...numeros);
-    let segundoMenor = Math.max(...numeros);
+// function segundoMenor(numeros) {
+//     let menor = Math.min(...numeros);
+//     let segundoMenor = Math.max(...numeros);
 
-    for(let numero of numeros) {
-        if(numero < segundoMenor && numero > menor) {
-            segundoMenor = numero;
-        }
-    }
+//     for(let numero of numeros) {
+//         if(numero < segundoMenor && numero > menor) {
+//             segundoMenor = numero;
+//         }
+//     }
 
-    return segundoMenor;
-}
+//     return segundoMenor;
+// }
 
-function exercicio1(numeros) {
-    console.log(segundoMaior(numeros));
-    console.log(segundoMenor(numeros));
-}
+// function exercicio1(numeros) {
+//     console.log(segundoMaior(numeros));
+//     console.log(segundoMenor(numeros));
+// }
 
-exercicio1([4,1,8,9,3,2,10]);
+// exercicio1([4,1,8,9,3,2,10]);
+
+/* EXERCÍCIO 2 */
+const exercicio2 = () => {
+    alert("Hello Labenu");
+};
+
+exercicio2();
