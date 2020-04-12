@@ -228,23 +228,45 @@
 // });
 
 /* EXERCÍCIO 3 */
-const array = [1, 2, 3, 4, 5, 6];
+// const array = [1, 2, 3, 4, 5, 6];
 
-/* a. */
-const arrayMultiplicadoPor2 = array.map(elemento => {
-    return elemento * 2;
+// /* a. */
+// const arrayMultiplicadoPor2 = array.map(elemento => {
+//     return elemento * 2;
+// });
+
+// /* b. */
+// const arrayMultiplicadoPor3EmString = array.map(elemento => {
+//     return `${elemento * 3}`;
+// });
+
+// /* c. */
+// const arrayParesImpares = array.map(elemento => {
+//     if(elemento % 2 === 0) {
+//         return `${elemento} é par`;
+//     } else {
+//         return `${elemento} é ímpar`;
+//     }
+// });
+
+/* EXERCÍCIO 4 */
+const pessoas = [
+	{ nome: "Paula", idade: 12, altura: 1.8},
+	{ nome: "João", idade: 20, altura: 1.3},
+	{ nome: "Pedro", idade: 15, altura: 1.9},
+	{ nome: "Luciano", idade: 22, altura: 1.8},
+	{ nome: "Artur", idade: 10, altura: 1.2},
+	{ nome: "Soter", idade: 70, altura: 1.9}
+];
+
+const pessoasPermitidas = pessoas.filter(pessoa => {
+    if(pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade < 60) {
+        return pessoa;
+    }
 });
 
-/* b. */
-const arrayMultiplicadoPor3EmString = array.map(elemento => {
-    return `${elemento * 3}`;
-});
-
-/* c. */
-const arrayParesImpares = array.map(elemento => {
-    if(elemento % 2 === 0) {
-        return `${elemento} é par`;
-    } else {
-        return `${elemento} é ímpar`;
+const pessoasNaoPermitidas = pessoas.filter(pessoa => {
+    if(!(pessoa.altura >= 1.5 && pessoa.idade > 14 && pessoa.idade < 60)) {
+        return pessoa;
     }
 });
