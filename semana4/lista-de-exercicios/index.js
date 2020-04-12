@@ -126,8 +126,25 @@
 // exercicio1([4,1,8,9,3,2,10]);
 
 /* EXERCÍCIO 2 */
-const exercicio2 = () => {
-    alert("Hello Labenu");
-};
+// const exercicio2 = () => {
+//     alert("Hello Labenu");
+// };
 
-exercicio2();
+// exercicio2();
+
+/* EXERCÍCIOS DE OBJETOS */
+/* EXERCÍCIO 1
+   1- Devemos utilizar arrays quando queremos guardar dados de um mesmo tipo de forma ordenada
+   (não necessariamente em ordem); objetos são estruturas de dados mais robustas, onde podem ser
+   guardados tipos diferentes, além de poder guardar funções.
+*/
+
+/* EXERCÍCIO 2 */
+function criaRetangulo(lado1, lado2) {
+    return {
+        largura: lado1,
+        altura: lado2,
+        perimetro: 2 * (lado1 + lado2),
+        area: lado1 * lado2
+    }
+}
