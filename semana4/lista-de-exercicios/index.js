@@ -188,23 +188,41 @@
    Antes das funções de array podíamos iterar através de while, for ou for...of.
    Abaixo há um exemplo.
 */
-function iteracaoEmArrays() {
-    const array = [1, 2, 3];
+// function iteracaoEmArrays() {
+//     const array = [1, 2, 3];
 
-    /* Iteração com while */
-    let n = 0;
-    while(n < array.length) {
-        console.log(array[n]);
-        n++;
-    }
+//     /* Iteração com while */
+//     let n = 0;
+//     while(n < array.length) {
+//         console.log(array[n]);
+//         n++;
+//     }
 
-    /* Iteração com for */
-    for(let i = 0; i < array.length; i++) {
-        console.log(array[i]);
-    }
+//     /* Iteração com for */
+//     for(let i = 0; i < array.length; i++) {
+//         console.log(array[i]);
+//     }
 
-    /* Iteração com for..of */
-    for(let elemento of array) {
-        console.log(elemento);
-    }
-}
+//     /* Iteração com for..of */
+//     for(let elemento of array) {
+//         console.log(elemento);
+//     }
+// }
+
+/* EXERCÍCIO 2 */
+const pessoas = [
+	{ nome: "Pedro", idade: 20 },
+	{ nome: "João", idade: 10 },
+	{ nome: "Paula", idade: 12 },
+	{ nome: "Artur", idade: 89 } 
+];
+
+/* a. */
+const adultos = pessoas.filter(pessoa => {
+    return pessoa.idade >= 20;
+});
+
+/* b. */
+const criancasAdolescentes = pessoas.filter(pessoa => {
+    return pessoa.idade < 20;
+});
