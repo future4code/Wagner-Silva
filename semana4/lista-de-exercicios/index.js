@@ -150,15 +150,34 @@
 // }
 
 /* EXERCICIO 3 */
-const filme = {
-    titulo: "O Irlandês",
-    ano: 2019,
-    diretor: "Martin Scorsese",
-    atores: ["Robert De Niro", "Al Pacino", "Joe Pesci"]
+// const filme = {
+//     titulo: "O Irlandês",
+//     ano: 2019,
+//     diretor: "Martin Scorsese",
+//     atores: ["Robert De Niro", "Al Pacino", "Joe Pesci"]
+// }
+
+// function filmeFavorito(filme) {
+//     console.log(`Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores.toString()}.`);
+// }
+
+// filmeFavorito(filme);
+
+/* EXERCÍCIO 4 */
+const pessoa = {
+    nome: "Wagner",
+    idade: 21,
+    email: "wagner@email.com",
+    endereco: "Cuitegi-PB",
 }
 
-function filmeFavorito(filme) {
-    console.log(`Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores.toString()}.`);
+function anonimizarPessoa(pessoa) {
+    return {
+        ...pessoa,
+        nome: "ANÔNIMO"
+    }
 }
 
-filmeFavorito(filme);
+novoObj = anonimizarPessoa(pessoa);
+console.log(pessoa);
+console.log(novoObj);
