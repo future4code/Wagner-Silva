@@ -140,11 +140,25 @@
 */
 
 /* EXERCÍCIO 2 */
-function criaRetangulo(lado1, lado2) {
-    return {
-        largura: lado1,
-        altura: lado2,
-        perimetro: 2 * (lado1 + lado2),
-        area: lado1 * lado2
-    }
+// function criaRetangulo(lado1, lado2) {
+//     return {
+//         largura: lado1,
+//         altura: lado2,
+//         perimetro: 2 * (lado1 + lado2),
+//         area: lado1 * lado2
+//     }
+// }
+
+/* EXERCICIO 3 */
+const filme = {
+    titulo: "O Irlandês",
+    ano: 2019,
+    diretor: "Martin Scorsese",
+    atores: ["Robert De Niro", "Al Pacino", "Joe Pesci"]
 }
+
+function filmeFavorito(filme) {
+    console.log(`Venha assistir ao filme ${filme.titulo}, de ${filme.ano}, dirigido por ${filme.diretor} e estrelado por ${filme.atores.toString()}.`);
+}
+
+filmeFavorito(filme);
