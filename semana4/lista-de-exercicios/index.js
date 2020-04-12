@@ -38,8 +38,19 @@
    undefined no momento da comparação; e segundo que não há nenhuma comparação se o número é par ou não.
    Abaixo está a implementação correta da função.
 */
-function quantidadeDeNumerosPares(quantidade) {
-    for(let i = 0; i < quantidade * 2; i += 2) {
-        console.log(i);
+// function quantidadeDeNumerosPares(quantidade) {
+//     for(let i = 0; i < quantidade * 2; i += 2) {
+//         console.log(i);
+//     }
+// }
+
+/* EXERCÍCIO 3 */
+function classificacaoDeTriangulo(a, b, c) {
+    if(a === b && b === c) {
+        return "Equilátero";
+    } else if(a === b || b === c || a === c) {
+        return "Isósceles";
+    } else {
+        return "Escaleno";
     }
 }
