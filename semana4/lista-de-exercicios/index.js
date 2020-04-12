@@ -17,4 +17,7 @@
    e em seguida a quantidade de números pares e ímpares através do tamanho de seus respectivos
    arrays.
    
+   4- Serão impressos o maior e o menor número de um array de números. Como numero1 inicia-se como
+   infinito, ele guardará o menor no número ao final da iteração; numero2 inicia-se como 0, portanto
+   guardará o maior número.
 */
