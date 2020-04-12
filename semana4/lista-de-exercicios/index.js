@@ -11,5 +11,10 @@
    define-se o tipo de investimento, informando erro caso o tipo esteja incorreto. Após a escolha,
    define-se o valor de investimento de acordo com a opção escolhida e retorna este valor. Por fim,
    imprime na tela um valor de 150 investido em ações e 200 em tesouro direto.
+
+   3- O código separa um array em outros 2, onde um estará os números pares, e no outro os números
+   ímpares. Por fim, imprime na tela a quantidade de números do array que possui todos os números,
+   e em seguida a quantidade de números pares e ímpares através do tamanho de seus respectivos
+   arrays.
    
 */
