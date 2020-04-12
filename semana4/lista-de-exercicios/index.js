@@ -56,34 +56,69 @@
 // }
 
 /* EXERCÍCIO 4 */
-function maior(a, b) {
-    if(a > b) return a;
-    else return b;
-}
+// function maior(a, b) {
+//     if(a > b) return a;
+//     else return b;
+// }
 
-function diviseis(a, b) {
-    return a % b === 0;
-}
+// function diviseis(a, b) {
+//     return a % b === 0;
+// }
 
-function diferenca(a, b) {
-    return Math.abs(a -b);
-}
+// function diferenca(a, b) {
+//     return Math.abs(a -b);
+// }
 
-function exercicio4(a, b) {
-    console.log(`ENTRADA:\n${a} e ${b}\n`);
-    console.log(`SAÍDA:\nO maior é ${maior(a, b)}`);
+// function exercicio4(a, b) {
+//     console.log(`ENTRADA:\n${a} e ${b}\n`);
+//     console.log(`SAÍDA:\nO maior é ${maior(a, b)}`);
 
-    if(diviseis(a, b)) {
-        console.log(`${a} é divisível por ${b}`);
-    } else {
-        console.log(`${a} não é divisível por ${b}`);
+//     if(diviseis(a, b)) {
+//         console.log(`${a} é divisível por ${b}`);
+//     } else {
+//         console.log(`${a} não é divisível por ${b}`);
+//     }
+
+//     if(diviseis(b, a)) {
+//         console.log(`${b} é divisível por ${a}`);
+//     } else {
+//         console.log(`${b} não é divisível por ${a}`);
+//     }
+
+//     console.log(`A diferença entre eles é ${diferenca(a, b)}`);
+// }
+
+
+/* AULA 15 - Objetos, Strings e Arrays */
+/* EXERCÍCIOS DE FUNÇÕES */
+/* EXERCÍCIO 1 */
+function segundoMaior(numeros) {
+    let maior = Math.max(...numeros);
+    let segundoMaior = Math.min(...numeros);
+
+    for(let numero of numeros) {
+        if(numero > segundoMaior && numero < maior) {
+            segundoMaior = numero;
+        }
     }
 
-    if(diviseis(b, a)) {
-        console.log(`${b} é divisível por ${a}`);
-    } else {
-        console.log(`${b} não é divisível por ${a}`);
+    return segundoMaior;
+}
+
+function segundoMenor(numeros) {
+    let menor = Math.min(...numeros);
+    let segundoMenor = Math.max(...numeros);
+
+    for(let numero of numeros) {
+        if(numero < segundoMenor && numero > menor) {
+            segundoMenor = numero;
+        }
     }
 
-    console.log(`A diferença entre eles é ${diferenca(a, b)}`);
+    return segundoMenor;
+}
+
+function exercicio1(numeros) {
+    console.log(segundoMaior(numeros));
+    console.log(segundoMenor(numeros));
 }
