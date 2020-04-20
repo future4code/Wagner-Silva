@@ -1,29 +1,9 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
 import Botao from './Botao';
+import ContainerFormulario from './Formulario';
+import ContainerPerguntas from './ContainerPerguntas';
 import Pergunta from './Pergunta';
-
-
-const ContainerFormulario = styled.section`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 30%;
-    height: 70%;
-    border: 1px solid black;
-`
-
-const ContainerPerguntas = styled.div`
-    display: flex;
-    width: 100%;
-    height: 50%;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-`
-
 
 export default class DadosGerais extends Component {
     constructor(props) {
@@ -33,7 +13,7 @@ export default class DadosGerais extends Component {
             valorInputNome: '',
             valorInputIdade: '',
             valorInputEmail: '',
-            valorInputEscolaridade: ''
+            valorInputEscolaridade: '',
         }
     }
 
@@ -63,8 +43,7 @@ export default class DadosGerais extends Component {
 
     render() {
         return (
-            <ContainerFormulario>
-                <h3>DADOS GERAIS</h3>
+            <ContainerFormulario tituloFormulario={`ETAPA ${this.props.etapa} - DADOS GERAIS`}>
                 <ContainerPerguntas>
                     <Pergunta 
                         pergunta={"1- Qual o seu nome ?"}
