@@ -1,0 +1,26 @@
+/*.share-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}*/
+
+.mensagem {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.input-compartilhamento {
+    width: 100%;
+    margin-right: 5px;
+}
+
+.redes-sociais {
+    display: flex;
+    padding: 5px;
+}
+
+img {
+    width: 24px;
+    margin-left: 5px;
+}
