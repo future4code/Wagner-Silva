@@ -55,6 +55,10 @@ export default class Cadastro extends Component {
         }).catch((error) => {
             window.alert("Erro ao salvar um novo usuário")
         });
+        this.setState({
+            valorInputNome: "",
+            valorInputEmail: ""
+        })
     }
 
     render() {

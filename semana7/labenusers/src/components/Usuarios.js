@@ -12,7 +12,13 @@ const Container = styled.div`
 
 const ContainerLista = styled.main`
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+`
+
+const ContainerUsuario = styled.div`
+    display: flex;
     align-items: center;
 `
 
@@ -25,25 +31,47 @@ export default class Usuarios extends Component {
     }
 
     componentDidMount() {
-        const listaDeUsuarios = axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", {
-            headers: {
-                Authorization: "wagner-cardoso-julian"
-            }
-        });
+        this.listarUsuarios();
+    }
 
-        listaDeUsuarios.then((response) => {
-            this.setState({
-                usuarios: response.data
+    listarUsuarios = async () => {
+        try {
+            const listaDeUsuarios = await axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users", {
+                headers: {
+                    Authorization: "wagner-cardoso-julian"
+                }
             });
+            this.setState({
+                usuarios: listaDeUsuarios.data
+            });
+        } catch(error) {
+            window.alert(`Erro na listagem dos usuários:${error}`);
+        }
+
+
+    }
+
+    excluirUsuario = (usuarioId) => {
+        axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${usuarioId}`, {
+            headers: {
+                Authorization: 'wagner-cardoso-julian'
+            }
+        }).then((response) => {
+            window.alert("Usuário excluído!");
+            this.listarUsuarios()
         }).catch((error) => {
-            console.log(error);
-            window.alert("Erro na listagem de usuários");
+            window.alert(`Erro ao excluir usuário: ${error}`);
         })
     }
 
     render() {
         const listaDeUsuarios = this.state.usuarios.map( (usuario, index) => {
-            return <li key={index}>{usuario.name}</li>
+            return (
+                <ContainerUsuario>
+                    <li key={index}>{usuario.name}</li>
+                    <button onClick={() => this.excluirUsuario(usuario.id)}>Apagar</button>
+                </ContainerUsuario>
+            )
         });
 
         return (
