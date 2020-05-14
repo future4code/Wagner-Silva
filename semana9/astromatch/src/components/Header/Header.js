@@ -60,7 +60,7 @@ const LoginButton = styled.button`
 `
 
 const Header = (props) => {
-    if(props.logo) {
+    if(props.logoCenter) {
         return (
             <HeaderLogoContainer>
                 <LogoCenter src={logo} alt={"Logo Astromatch"} />
