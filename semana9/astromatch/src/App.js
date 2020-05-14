@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
-import Header from './components/Header/Header';
-
+import Home from './components/Home/Home';
 import './App.css';
 
 const AppContainer = styled.div`
@@ -13,7 +11,7 @@ const AppContainer = styled.div`
 function App() {
   return (
     <AppContainer>
-      <Header logo={true} />
+      <Home />
     </AppContainer>
   );
 }
