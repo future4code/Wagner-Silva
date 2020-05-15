@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import DrawerMatchs from './DrawerMatchs';
+import { Menu } from '@material-ui/icons';
 import styled from 'styled-components';
 import colors from '../../utils/colors';
 import logo from '../../assets/astromatch.svg';
@@ -18,6 +20,45 @@ const HeaderLogoContainer = styled.header`
     display: flex;
     align-items: center;
     justify-content: center;
+`
+
+const HeaderMatchContainerMobile = styled.header`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+`
+
+const LogoContainerMatchMobile = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+`
+
+const MenuContainerMatchMobile = styled.div`
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+`
+
+const MenuIcon = styled(Menu)`
+    color: ${colors.purple};
+`
+
+const MenuButton = styled.button`
+    background-color: ${colors.white};
+    width: 20%;
+    height: 60%;
+    border: none;
 `
 
 const Logo = styled.img`
@@ -61,10 +102,36 @@ const LoginButton = styled.button`
 `
 
 const Header = (props) => {
-    if(props.logoCenter) {
+    const [ drawer, setDrawer ] = useState(false);
+
+    const openDrawer = () => {
+        setDrawer(true);
+    }
+
+    const closeDrawer = () => {
+        setDrawer(false);
+    }
+
+    if(props.mobileMatchs) {
         return (
             <HeaderLogoContainer>
-                <LogoCenter src={logo} alt={"Logo Astromatch"} />
+                <HeaderMatchContainerMobile>
+                    <LogoContainerMatchMobile>
+                        <LogoCenter src={logo} alt={"Logo AstroMatch"} />
+                    </LogoContainerMatchMobile>
+                    <MenuContainerMatchMobile>
+                        <MenuButton onClick={openDrawer}>
+                            <MenuIcon />
+                        </MenuButton>
+                        <DrawerMatchs open={drawer} close={closeDrawer} />
+                    </MenuContainerMatchMobile>
+                </HeaderMatchContainerMobile>
+            </HeaderLogoContainer>
+        )
+    } else if(props.logoCenter) {
+        return (
+            <HeaderLogoContainer>
+                <LogoCenter src={logo} alt={"Logo AstroMatch"} />
             </HeaderLogoContainer>
         )
     } else {
