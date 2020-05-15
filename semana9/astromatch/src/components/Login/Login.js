@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import { Avatar } from '@material-ui/core';
 import { Favorite } from '@material-ui/icons';
 import styled from 'styled-components';
+import colors from '../../utils/colors';
 
 const LoginContent = styled(Content)`
     display: flex;
@@ -28,7 +29,7 @@ const TextContainer = styled.article`
 `
 
 const AccountsContainer = styled.div`
-    background-color: #FFFFFF;
+    background-color: ${colors.white};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,7 +38,7 @@ const AccountsContainer = styled.div`
     height: 70%;
     border-radius: 15px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    color: #3E3737;
+    color: ${colors.blackText};
 
     @media (min-width: 320px) and (max-width: 420px) {
         width: 80%;
@@ -97,11 +98,11 @@ const Matchs = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #3E3737;
+    color: ${colors.blackText};
 `
 
 const FavoriteIcon = styled(Favorite)`
-    color: #3E1790;
+    color: ${colors.purple};
 `
 
 const CreateAccountButtonContainer = styled.div`
@@ -113,10 +114,10 @@ const CreateAccountButtonContainer = styled.div`
 `
 
 const CreateAccountButton = styled.button`
-    background: #2C8234;
+    background: ${colors.green};
     border: none;
     border-radius: 10px;
-    color: #FFFFFF;
+    color: ${colors.white};
     font-weight: bold;
     width: 40%;
     height: 50%;
@@ -131,14 +132,14 @@ const MatchsButtonContainer = styled.div`
 `
 
 const MatchsButton = styled.button`
-    background: #4B19B8;
+    background: ${colors.purple};
     width: 15%;
     height: 50%;
-    border: 2px solid #FFFFFF;
+    border: 2px solid ${colors.white};
     border-radius: 15px;
     font-size: 1em;
     font-weight: bold;
-    color: #FFFFFF;
+    color: ${colors.white};
 
     @media (min-width: 320px) and (max-width: 420px) {
         width: 50%;

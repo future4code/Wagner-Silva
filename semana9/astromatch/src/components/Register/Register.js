@@ -127,14 +127,14 @@ const RegisterButtonContainer = styled.div`
 `
 
 const RegisterButton = styled.button`
-    background: #4B19B8;
+    background: ${colors.purple};
     width: 15%;
     height: 70%;
-    border: 2px solid #FFFFFF;
+    border: 2px solid ${colors.white};
     border-radius: 15px;
     font-size: 1em;
     font-weight: bold;
-    color: #FFFFFF;
+    color: ${colors.white};
 
     @media (min-width: 320px) and (max-width: 420px) {
         width: 35%;

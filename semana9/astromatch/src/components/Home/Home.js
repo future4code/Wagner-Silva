@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import couple_one from '../../assets/couple_one.svg';
 import couple_two from '../../assets/couple_two.svg';
 import couple_three from '../../assets/couple_three.svg';
+import colors from '../../utils/colors';
 
 const HomeContent = styled(Content)`
     display: flex;
@@ -49,17 +50,17 @@ const Image = styled.img`
 `
 
 const MatchsButton = styled.button`
-    background: #4B19B8;
-    border: 2px solid #FFFFFF;
+    background: ${colors.purple};
+    border: 2px solid ${colors.white};
     border-radius: 15px;
-    color: #FFFFFF;
+    color: ${colors.white};
     font-size: 0.9em;
     font-weight: bold;
     width: 15%;
     height: 8%;
 
     @media (min-width: 320px) and (max-width: 420px) {
-        border: 1px solid #FFFFFF;
+        border: 1px solid ${colors.white};
         border-radius: 10px;
         width: 35%;
         font-size: 0.7em;
