@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import colors from '../../utils/colors';
 import logo from '../../assets/astromatch.svg';
 
 
@@ -44,9 +45,9 @@ const LogoCenter = styled.img`
 const LoginButton = styled.button`
     width: 10%;
     height: 50%;
-    background-color: #FFFFFF;
-    color: #2C8234;
-    border: 1px solid #2C8234;
+    background-color: ${colors.white};
+    color: ${colors.green};
+    border: 1px solid ${colors.green};
     border-radius: 20px;
     text-align: center;
     margin-right: 30px;

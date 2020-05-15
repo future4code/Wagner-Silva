@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import colors from '../../utils/colors';
 
 const ContentContainer = styled.div`
-    background: linear-gradient(180deg, #2F3BAB 0%, rgba(47, 59, 171, 0.9) 52.08%);
+    background: ${colors.blueEffect};
     color: #FFFFFF;
     width: 100%;
     height: 90%;
