@@ -6,6 +6,10 @@ const CrushPictureContainer = styled.div`
     width: 60%;
     height: 100%;
     position: relative;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 90%;
+    }
 `
 
 const PictureContainer = styled.div`

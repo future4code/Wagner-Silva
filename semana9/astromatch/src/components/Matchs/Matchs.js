@@ -4,7 +4,6 @@ import Content from '../Content/Content';
 import Header from '../Header/Header';
 import Menu from './Menu';
 import Crushs from './Crushs';
-import colors from '../../utils/colors';
 import styled from 'styled-components';
 
 const MatchsContent = styled(Content)`
@@ -32,6 +31,9 @@ const Matchs = () => {
         return (
             <Container>
                 <Header mobileMatchs={true} />
+                <MatchsContent>
+                    <Crushs />
+                </MatchsContent>
             </Container>
         )
     } : () => {

@@ -4,7 +4,7 @@ import { ArrowBack } from '@material-ui/icons';
 import colors from '../../utils/colors';
 import styled from 'styled-components';
 
-const MenuMatchMobileContainer = styled.aside`
+const MenuMatchMobileContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 10% 90%;

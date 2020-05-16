@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DrawerMatchs from './DrawerMatchs';
+import { Link } from 'react-router-dom';
 import { Menu } from '@material-ui/icons';
 import styled from 'styled-components';
 import colors from '../../utils/colors';
@@ -44,7 +45,7 @@ const LogoContainerMatchMobile = styled.div`
 const MenuContainerMatchMobile = styled.div`
     display: flex;
     align-items: center;
-    width: 90%;
+    width: 100%;
     height: 100%;
     position: absolute;
     z-index: 2;
@@ -61,31 +62,44 @@ const MenuButton = styled.button`
     border: none;
 `
 
-const Logo = styled.img`
+const LinkHomeLogo = styled(Link)`
     width: 5%;
     height: 75%;
-    margin-left: 30px;
+    margin-left: ${props => props.center ? "none" : "30px"};
 
     @media (min-width: 320px) and (max-width: 420px) {
         width: 10%;
         height: 60%;
-        margin-left: 15px;
+        margin-left: ${props => props.center ? "none" : "15px"};
     }
 `
 
+const Logo = styled.img`
+    width: 100%;
+    height: 100%;
+`
+
 const LogoCenter = styled.img`
-    width: 5%;
-    height: 75%;
+    width: 100%;
+    height: 100%;
+`
+
+const LinkLogin = styled(Link)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 10%;
+    height: 50%;
 
     @media (min-width: 320px) and (max-width: 420px) {
-        width: 10%;
-        height: 60%;
+        width: 20%;
     }
 `
 
 const LoginButton = styled.button`
-    width: 10%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
     background-color: ${colors.white};
     color: ${colors.green};
     border: 1px solid ${colors.green};
@@ -94,7 +108,6 @@ const LoginButton = styled.button`
     margin-right: 30px;
 
     @media (min-width: 320px) and (max-width: 420px) {
-        width: 15%;
         border-radius: 10px;
         font-size: 0.6em;
         margin-right: 15px;
@@ -117,7 +130,9 @@ const Header = (props) => {
             <HeaderLogoContainer>
                 <HeaderMatchContainerMobile>
                     <LogoContainerMatchMobile>
-                        <LogoCenter src={logo} alt={"Logo AstroMatch"} />
+                        <LinkHomeLogo to={"/"} center={true}>
+                            <LogoCenter src={logo} alt={"Logo AstroMatch"} />
+                        </LinkHomeLogo>
                     </LogoContainerMatchMobile>
                     <MenuContainerMatchMobile>
                         <MenuButton onClick={openDrawer}>
@@ -131,14 +146,20 @@ const Header = (props) => {
     } else if(props.logoCenter) {
         return (
             <HeaderLogoContainer>
-                <LogoCenter src={logo} alt={"Logo AstroMatch"} />
+                <LinkHomeLogo to={"/"} center={true}>
+                    <LogoCenter src={logo} alt={"Logo AstroMatch"} />
+                </LinkHomeLogo>
             </HeaderLogoContainer>
         )
     } else {
         return (
             <HeaderHomeContainer>
-                <Logo src={logo} alt={"Logo Astromatch"} />
-                <LoginButton>LOGIN</LoginButton>
+                <LinkHomeLogo to={"/"}>
+                    <Logo src={logo} alt={"Logo AstroMatch"} />
+                </LinkHomeLogo>
+                <LinkLogin to={"/login"}>
+                    <LoginButton>LOGIN</LoginButton>
+                </LinkLogin>
             </HeaderHomeContainer>
         )
     }

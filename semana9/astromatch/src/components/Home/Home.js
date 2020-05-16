@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Container from '../Container/Container';
 import Content from '../Content/Content';
@@ -49,6 +50,15 @@ const Image = styled.img`
     }
 `
 
+const LinkMatchsButton = styled(Link)`
+    width: 15%;
+    height: 8%;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 35%;
+    }
+`
+
 const MatchsButton = styled.button`
     background: ${colors.purple};
     border: 2px solid ${colors.white};
@@ -56,13 +66,12 @@ const MatchsButton = styled.button`
     color: ${colors.white};
     font-size: 0.9em;
     font-weight: bold;
-    width: 15%;
-    height: 8%;
+    width: 100%;
+    height: 100%;
 
     @media (min-width: 320px) and (max-width: 420px) {
         border: 1px solid ${colors.white};
         border-radius: 10px;
-        width: 35%;
         font-size: 0.7em;
     }
 `
@@ -80,7 +89,9 @@ const Home = () => {
                     <Image src={couple_one} alt={"Casal"} />
                     <Image src={couple_three} alt={"Casal"} />
                 </ImagesContainer>
-                <MatchsButton>DAR MATCHS</MatchsButton>
+                <LinkMatchsButton to={"/login"}>
+                    <MatchsButton>DAR MATCHS</MatchsButton>
+                </LinkMatchsButton>
             </HomeContent>
         </Container>
     )

@@ -126,67 +126,63 @@ const FooterButton = styled.button`
     font-weight: 700;
 `
 
-const Menu = (props) => {
-    if(props.visible) {
-        return (
-            <MenuContainer>
-                <MenuHeader>
-                    <User>
-                        <AvatarContainer>
-                            <Avatar>W</Avatar>
-                            <p>Wagner</p>
-                        </AvatarContainer>
-                    </User>
-                    <Edit>
-                        <EditIcon />
-                    </Edit>
-                    <MatchsNumberContainer>
-                        <MatchsNumber>
-                            <MatchsIcon />
-                            <p>12</p>
-                        </MatchsNumber>
-                    </MatchsNumberContainer>
-                </MenuHeader>
-                <MatchsListContainer>
-                    <MatchsListTitleContainer>
-                        <h4>Matchs</h4>
-                    </MatchsListTitleContainer>
-                    <MatchItem>
-                        <AvatarContainer>
-                            <Avatar>M</Avatar>
-                            <p>Match 1</p>
-                        </AvatarContainer>
-                    </MatchItem>
-                    <MatchItem>
-                        <AvatarContainer>
-                            <Avatar>M</Avatar>
-                            <p>Match 2</p>
-                        </AvatarContainer>
-                    </MatchItem>
-                    <MatchItem>
-                        <AvatarContainer>
-                            <Avatar>M</Avatar>
-                            <p>Match 3</p>
-                        </AvatarContainer>
-                    </MatchItem>
-                    <MatchItem>
-                        <AvatarContainer>
-                            <Avatar>M</Avatar>
-                            <p>Match 4</p>
-                        </AvatarContainer>
-                    </MatchItem>
-                </MatchsListContainer>
-                <MenuFooter>
-                    <ButtonsContainer>
-                        <FooterButton reset={true}>RESETAR MATCHS</FooterButton>
-                        <FooterButton reset={false}>SAIR</FooterButton>
-                    </ButtonsContainer>
-                </MenuFooter>
-            </MenuContainer>
-        )
-    } else {
-        return null;
-    }
+const Menu = () => {
+    return (
+        <MenuContainer>
+            <MenuHeader>
+                <User>
+                    <AvatarContainer>
+                        <Avatar>W</Avatar>
+                        <p>Wagner</p>
+                    </AvatarContainer>
+                </User>
+                <Edit>
+                    <EditIcon />
+                </Edit>
+                <MatchsNumberContainer>
+                    <MatchsNumber>
+                        <MatchsIcon />
+                        <p>12</p>
+                    </MatchsNumber>
+                </MatchsNumberContainer>
+            </MenuHeader>
+            <MatchsListContainer>
+                <MatchsListTitleContainer>
+                    <h4>Matchs</h4>
+                </MatchsListTitleContainer>
+                <MatchItem>
+                    <AvatarContainer>
+                        <Avatar>M</Avatar>
+                        <p>Match 1</p>
+                    </AvatarContainer>
+                </MatchItem>
+                <MatchItem>
+                    <AvatarContainer>
+                        <Avatar>M</Avatar>
+                        <p>Match 2</p>
+                    </AvatarContainer>
+                </MatchItem>
+                <MatchItem>
+                    <AvatarContainer>
+                        <Avatar>M</Avatar>
+                        <p>Match 3</p>
+                    </AvatarContainer>
+                </MatchItem>
+                <MatchItem>
+                    <AvatarContainer>
+                        <Avatar>M</Avatar>
+                        <p>Match 4</p>
+                    </AvatarContainer>
+                </MatchItem>
+            </MatchsListContainer>
+            <MenuFooter>
+                <ButtonsContainer>
+                    <FooterButton reset={true}>RESETAR MATCHS</FooterButton>
+                    <FooterButton reset={false}>SAIR</FooterButton>
+                </ButtonsContainer>
+            </MenuFooter>
+        </MenuContainer>
+    )
 }
 
 export default Menu;

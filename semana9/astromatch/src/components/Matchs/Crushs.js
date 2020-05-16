@@ -14,6 +14,10 @@ const CrushsContainer = styled.main`
     height: 90%;
     border-radius: 20px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 90%;
+    }
 `
 
 const CrushsTitleContainer = styled.div`
@@ -23,6 +27,10 @@ const CrushsTitleContainer = styled.div`
     width: 100%;
     height: 100%;
     color: ${colors.purple};
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        font-size: 0.7em;
+    }
 `
 
 const CrushContainer = styled.div`
