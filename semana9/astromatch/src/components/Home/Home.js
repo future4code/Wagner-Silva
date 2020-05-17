@@ -68,6 +68,7 @@ const MatchsButton = styled.button`
     font-weight: bold;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 
     @media (min-width: 320px) and (max-width: 420px) {
         border: 1px solid ${colors.white};

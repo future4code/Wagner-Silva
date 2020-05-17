@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../Container/Container';
 import Content from '../Content/Content';
 import Header from '../Header/Header';
@@ -64,11 +65,21 @@ const AccountsListContainer = styled.div`
     height: 70%;
 `
 
+const LinkAccount = styled(Link)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10%;
+    text-decoration: none;
+    color: ${colors.blackText};
+`
+
 const Account = styled.div`
     display: flex;
     align-items: center;
     width: 100%;
-    height: 20%;
+    height: 100%;
     font-weight: 600;
 `
 
@@ -112,6 +123,10 @@ const CreateAccountButtonContainer = styled.div`
     width: 80%;
     height: 15%;
 `
+const LinkCreateAccount = styled(Link)`
+    width: 40%;
+    height: 50%;
+`
 
 const CreateAccountButton = styled.button`
     background: ${colors.green};
@@ -119,11 +134,12 @@ const CreateAccountButton = styled.button`
     border-radius: 10px;
     color: ${colors.white};
     font-weight: bold;
-    width: 40%;
-    height: 50%;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 `
 
-const MatchsButtonContainer = styled.div`
+const MessageContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,24 +147,30 @@ const MatchsButtonContainer = styled.div`
     height: 15%;
 `
 
-const MatchsButton = styled.button`
-    background: ${colors.purple};
-    width: 15%;
-    height: 50%;
-    border: 2px solid ${colors.white};
-    border-radius: 15px;
-    font-size: 1em;
-    font-weight: bold;
-    color: ${colors.white};
-
-    @media (min-width: 320px) and (max-width: 420px) {
-        width: 50%;
-        height: 45%;
-        font-size: 0.7em;
-    }
-`
-
 const Login = () => {
+    const chooseUser = (id) => {
+        localStorage.setItem("actualUser", id);
+    }
+
+    const accountsList = JSON.parse(localStorage.getItem("users")).map( account => {
+        return (
+            <LinkAccount to={"/matchs"} onClick={() => chooseUser(account.id)}>
+                <Account>
+                    <AvatarContainer>
+                        <Avatar>{account.username[0]}</Avatar>
+                        <p>{account.username}</p>
+                    </AvatarContainer>
+                    <MatchContainer>
+                        <Matchs>
+                            <FavoriteIcon />
+                            <p>{account.matchs.length}</p>
+                        </Matchs>
+                    </MatchContainer>
+                </Account>
+            </LinkAccount>
+        )
+    })
+    
     return (
         <Container>
             <Header logoCenter={true} />
@@ -161,38 +183,17 @@ const Login = () => {
                         <h4>CONTAS SALVAS</h4>
                     </AccountsTitleContainer>
                     <AccountsListContainer>
-                        <Account>
-                            <AvatarContainer>
-                                <Avatar>W</Avatar>
-                                <p>Wagner</p>
-                            </AvatarContainer>
-                            <MatchContainer>
-                                <Matchs>
-                                    <FavoriteIcon />
-                                    <p>12</p>
-                                </Matchs>
-                            </MatchContainer>
-                        </Account>
-                        <Account>
-                            <AvatarContainer>
-                                <Avatar>J</Avatar>
-                                <p>Janny</p>
-                            </AvatarContainer>
-                            <MatchContainer>
-                                <Matchs>
-                                    <FavoriteIcon />
-                                    <p>12</p>
-                                </Matchs>
-                            </MatchContainer>
-                        </Account>
+                        {accountsList}
                     </AccountsListContainer>
                     <CreateAccountButtonContainer>
-                        <CreateAccountButton>Criar conta</CreateAccountButton>
+                        <LinkCreateAccount to={"/register"}>
+                            <CreateAccountButton>Criar conta</CreateAccountButton>
+                        </LinkCreateAccount>
                     </CreateAccountButtonContainer>
                 </AccountsContainer>
-                <MatchsButtonContainer>
-                    <MatchsButton>DAR MATCHS</MatchsButton>
-                </MatchsButtonContainer>
+                <MessageContainer>
+                    <h3>Conheça seu amor!</h3>
+                </MessageContainer>
             </LoginContent>
         </Container>
     )

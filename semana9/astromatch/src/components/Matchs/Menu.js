@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Avatar } from '@material-ui/core';
 import { Create, Favorite } from '@material-ui/icons';
+import axios from 'axios';
 import colors from '../../utils/colors';
 import styled from 'styled-components';
 
@@ -115,25 +117,60 @@ const ButtonsContainer = styled.div`
     height: 100%;
 `
 
-const FooterButton = styled.button`
+const LinkExit = styled(Link)`
     width: 50%;
     height: 35%;
+`
+
+const FooterButton = styled.button`
+    width: ${props => props.exit ? "100%" : "50%"};
+    height: ${props => props.exit ? "100%" : "35%"};
     background-color: ${props => props.reset ? colors.purple : colors.white};
     color: ${props => props.reset ? colors.white : colors.purple};
     border: ${props => props.reset ? "none" : `1px solid ${colors.purple}`};
     border-radius: 5px;
     font-size: 0.75em;
     font-weight: 700;
+    cursor: pointer;
 `
 
 const Menu = () => {
+    const [matchs, setMatchs] = useState([]);
+
+    useEffect(() => {
+        axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/wagner/matches")
+            .then( (response) => {
+                setMatchs(response.data.matches);
+            })
+            .catch(() => {
+                console.log("deu ruim");
+            })
+    }, [setMatchs]);
+
+    const [ userInfo ] = JSON.parse(localStorage.getItem("users")).filter( account => {
+            return account.id.toString() === localStorage.getItem("actualUser");
+    })
+
+    const matchsList = matchs.filter( match => {
+        return userInfo.matches.indexOf(match.id) !== -1;
+    }).map( matchUser => {
+        return (
+            <MatchItem>
+                <AvatarContainer>
+                    <Avatar>{matchUser.username[0]}</Avatar>
+                    <p>{matchUser.username}</p>
+                </AvatarContainer>
+            </MatchItem>
+        )
+    })
+
     return (
         <MenuContainer>
             <MenuHeader>
                 <User>
                     <AvatarContainer>
-                        <Avatar>W</Avatar>
-                        <p>Wagner</p>
+                        <Avatar>{userInfo.username[0]}</Avatar>
+                        <p>{userInfo.username}</p>
                     </AvatarContainer>
                 </User>
                 <Edit>
@@ -142,7 +179,7 @@ const Menu = () => {
                 <MatchsNumberContainer>
                     <MatchsNumber>
                         <MatchsIcon />
-                        <p>12</p>
+                        <p>{userInfo.matchs.length}</p>
                     </MatchsNumber>
                 </MatchsNumberContainer>
             </MenuHeader>
@@ -150,35 +187,14 @@ const Menu = () => {
                 <MatchsListTitleContainer>
                     <h4>Matchs</h4>
                 </MatchsListTitleContainer>
-                <MatchItem>
-                    <AvatarContainer>
-                        <Avatar>M</Avatar>
-                        <p>Match 1</p>
-                    </AvatarContainer>
-                </MatchItem>
-                <MatchItem>
-                    <AvatarContainer>
-                        <Avatar>M</Avatar>
-                        <p>Match 2</p>
-                    </AvatarContainer>
-                </MatchItem>
-                <MatchItem>
-                    <AvatarContainer>
-                        <Avatar>M</Avatar>
-                        <p>Match 3</p>
-                    </AvatarContainer>
-                </MatchItem>
-                <MatchItem>
-                    <AvatarContainer>
-                        <Avatar>M</Avatar>
-                        <p>Match 4</p>
-                    </AvatarContainer>
-                </MatchItem>
+                {matchsList}
             </MatchsListContainer>
             <MenuFooter>
                 <ButtonsContainer>
                     <FooterButton reset={true}>RESETAR MATCHS</FooterButton>
-                    <FooterButton reset={false}>SAIR</FooterButton>
+                    <LinkExit to={"/login"}>
+                        <FooterButton exit={true} reset={false}>SAIR</FooterButton>
+                    </LinkExit>
                 </ButtonsContainer>
             </MenuFooter>
         </MenuContainer>

@@ -106,6 +106,7 @@ const LoginButton = styled.button`
     border-radius: 20px;
     text-align: center;
     margin-right: 30px;
+    cursor: pointer;
 
     @media (min-width: 320px) and (max-width: 420px) {
         border-radius: 10px;

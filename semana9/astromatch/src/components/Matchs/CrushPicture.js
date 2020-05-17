@@ -13,7 +13,6 @@ const CrushPictureContainer = styled.div`
 `
 
 const PictureContainer = styled.div`
-    background-color: ${colors.purple};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,6 +21,12 @@ const PictureContainer = styled.div`
     position: absolute;
     z-index: 1;
     color: ${colors.white};
+`
+
+const CrushImage = styled.img`
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 `
 
 const CrushInfoContainer = styled.div`
@@ -42,16 +47,16 @@ const CrushInfo = styled.div`
     color: ${colors.white};
 `
 
-const CrushPicture = () => {
+const CrushPicture = (props) => {
     return (
         <CrushPictureContainer>
             <PictureContainer>
-                <h1>FOTO</h1>
+                <CrushImage src={props.crushPicture} alt={"Crush image"} />
             </PictureContainer>
             <CrushInfoContainer>
                 <CrushInfo>
-                    <h3>Nome, idade</h3>
-                    <p>Texto de descrição do pretendente</p>
+                    <h3>{`${props.crushName}, ${props.crushAge}`}</h3>
+                    <p>{props.crushBio}</p>
                 </CrushInfo>
             </CrushInfoContainer>
         </CrushPictureContainer>

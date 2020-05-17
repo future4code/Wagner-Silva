@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import Container from '../Container/Container';
 import Content from '../Content/Content';
 import Header from '../Header/Header';
@@ -15,9 +15,10 @@ const MatchsContent = styled(Content)`
 const Matchs = () => {
     const [ mobileScreen, setMobileScreen ] = useState(false);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if(!mobileScreen) {
             if(window.innerWidth >= 320 && window.innerWidth <= 420) {
+                console.log("setando width");
                 setMobileScreen(true);
             }
         } else {
@@ -25,7 +26,7 @@ const Matchs = () => {
                 setMobileScreen(false);
             }
         }
-    }, [mobileScreen]);
+    })
 
     const ScreenMatchs = mobileScreen ? () => {
         return (

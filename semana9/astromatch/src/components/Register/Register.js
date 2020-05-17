@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../Container/Container';
 import Content from '../Content/Content';
 import Header from '../Header/Header';
@@ -80,45 +81,21 @@ const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
     width: 100%;
     height: 100%;
-`
-
-const Label = styled.div`
-    width: 95%;
-    height: 35%;
-    position: absolute;
-    z-index: 2;
-
-    @media (min-width: 320px) and (max-width: 420px) {
-        width: 85%;
-    }
-`
-
-const Input = styled.div`
-    width: 95%;
-    height: 35%;
-    position: absolute;
-    z-index: 1;
 `
 
 const ColorButton = styled.button`
-    background: ${colors.white};
+    background: ${props => props.selected ? props.color : colors.white};
     border: 1px solid ${ props => props.color};
     border-radius: 5px;
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 35%;
     font-family: 'Montserrat', sans-serif;
-    color: ${props => props.color};
-
-    :focus {
-        background-color: ${props => props.color};
-        color: ${colors.white};
-    }
+    color: ${props => props.selected ? colors.white : props.color};
 `
 
-const RegisterButtonContainer = styled.div`
+const LinkRegisterButton = styled(Link)`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -146,6 +123,39 @@ const RegisterButton = styled.button`
 `
 
 const Register = () => {
+    const [name, setName] = useState("");
+    const [avatarColor, setAvatarColor] = useState("");
+
+    const onChangeName = (event) => {
+        setName(event.target.value);
+    }
+
+    const onChangeAvatarColor = (color) => {
+        setAvatarColor(color);
+    }
+
+    const register = () => {
+        const user = {
+            id: Date.now(),
+            username: name,
+            color: avatarColor,
+            matchs: []
+        };
+
+        const users = JSON.parse(localStorage.getItem("users"));
+
+        if(!users) {
+            const newUsers = localStorage.setItem("users", JSON.stringify([user]));
+            console.log(newUsers);
+        } else {
+            const newUsers = [...users, user];
+            console.log(newUsers)
+        }
+
+        localStorage.setItem("actualUser", user.id);
+
+    }
+
     return (
         <Container>
             <Header logoCenter={true} />
@@ -158,52 +168,70 @@ const Register = () => {
                         <h4>NOVA CONTA</h4>
                     </RegisterTitleContainer>
                     <FormContainer>
-                        <label forHTML={"name"}>Nome:</label>
-                        <InputName type={"text"} name={"name"} />
-                        <label forHTML={"color"}>Cor do avatar:</label>
+                        <label>Nome:</label>
+                        <InputName type={"text"} id={"name"} value={name} onChange={onChangeName} />
+                        <label>Cor do avatar:</label>
                         <ColorContainer>
                             <ButtonContainer>
-                                <Label forHTML={"red"}>
-                                    <ColorButton color={colors.red}>Vermelho</ColorButton>
-                                </Label>
-                                <Input type={"radio"} id={"red"} />
+                                <ColorButton
+                                    color={colors.red}
+                                    selected={avatarColor === "red"}
+                                    onClick={() => onChangeAvatarColor("red")}
+                                >
+                                        Vermelho
+                                </ColorButton>
                             </ButtonContainer>
                             <ButtonContainer>
-                                <Label forHTML={"green"}>
-                                    <ColorButton color={colors.green}>Verde</ColorButton>
-                                </Label>
-                                <Input type={"radio"} id={"green"} />
+                                <ColorButton
+                                    color={colors.green}
+                                    selected={avatarColor === "green"}
+                                    onClick={() => onChangeAvatarColor("green")}
+                                >
+                                    Verde
+                                </ColorButton>
                             </ButtonContainer>
                             <ButtonContainer>
-                                <Label forHTML={"blue"}>
-                                    <ColorButton color={colors.blueAvatar}>Azul</ColorButton>
-                                </Label>
-                                <Input type={"radio"} id={"blue"} />
+                                <ColorButton
+                                        color={colors.blue}
+                                        selected={avatarColor === "blue"}
+                                        onClick={() => onChangeAvatarColor("blue")}
+                                >
+                                    Azul
+                                </ColorButton>
                             </ButtonContainer>
                             <ButtonContainer>
-                                <Label forHTML={"black"}>
-                                    <ColorButton color={colors.black}>Preto</ColorButton>
-                                </Label>
-                                <Input type={"radio"} id={"black"} />
+                                <ColorButton
+                                    color={colors.black}
+                                    selected={avatarColor === "black"}
+                                    onClick={() => onChangeAvatarColor("black")}
+                                >
+                                    Preto
+                                </ColorButton>
                             </ButtonContainer>
                             <ButtonContainer>
-                                <Label forHTML={"orange"}>
-                                    <ColorButton color={colors.orange}>Laranja</ColorButton>
-                                </Label>
-                                <Input type={"radio"} id={"orange"} />
+                                <ColorButton
+                                    color={colors.orange}
+                                    selected={avatarColor === "orange"}
+                                    onClick={() => onChangeAvatarColor("orange")}
+                                >
+                                    Laranja
+                                </ColorButton>
                             </ButtonContainer>
                             <ButtonContainer>
-                                <Label forHTML={"purple"}>
-                                    <ColorButton color={colors.purple}>Roxo</ColorButton>
-                                </Label>
-                                <Input type={"radio"} id={"purple"} />
+                                <ColorButton
+                                    color={colors.purple}
+                                    selected={avatarColor === "purple"}
+                                    onClick={() => onChangeAvatarColor("purple")}
+                                >
+                                    Roxo
+                                </ColorButton>
                             </ButtonContainer>
                         </ColorContainer>
                     </FormContainer>
                 </RegisterContainer>
-                <RegisterButtonContainer>
-                    <RegisterButton>CADASTRAR</RegisterButton>
-                </RegisterButtonContainer>
+                <LinkRegisterButton to={"/matchs"}>
+                    <RegisterButton onClick={register}>CADASTRAR</RegisterButton>
+                </LinkRegisterButton>
             </RegisterContent>
         </Container>
     )
