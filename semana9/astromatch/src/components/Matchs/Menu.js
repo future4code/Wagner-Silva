@@ -134,24 +134,12 @@ const FooterButton = styled.button`
     cursor: pointer;
 `
 
-const Menu = () => {
-    const [matchs, setMatchs] = useState([]);
-
-    useEffect(() => {
-        axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/wagner/matches")
-            .then( (response) => {
-                setMatchs(response.data.matches);
-            })
-            .catch(() => {
-                console.log("deu ruim");
-            })
-    }, [setMatchs]);
-
+const Menu = (props) => {
     const [ userInfo ] = JSON.parse(localStorage.getItem("users")).filter( account => {
             return account.id.toString() === localStorage.getItem("actualUser");
     })
 
-    const matchsList = matchs.filter( match => {
+    const matchsList = props.matchsList.filter( match => {
         return userInfo.matches.indexOf(match.id) !== -1;
     }).map( matchUser => {
         return (

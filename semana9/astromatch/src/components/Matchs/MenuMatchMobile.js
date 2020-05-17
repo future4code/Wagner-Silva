@@ -51,7 +51,7 @@ const MenuMatchMobile = (props) => {
                     </BackButton>
                 </BackContainer>
             </MenuMatchMobileHeader>
-            <Menu />
+            <Menu matchsList={props.matchsList} />
         </MenuMatchMobileContainer>
     )
 }

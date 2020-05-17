@@ -152,7 +152,7 @@ const Login = () => {
         localStorage.setItem("actualUser", id);
     }
 
-    const accountsList = JSON.parse(localStorage.getItem("users")).map( account => {
+    const accountsList = localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")).map( account => {
         return (
             <LinkAccount to={"/matchs"} onClick={() => chooseUser(account.id)}>
                 <Account>
@@ -169,7 +169,7 @@ const Login = () => {
                 </Account>
             </LinkAccount>
         )
-    })
+        }) : undefined;
     
     return (
         <Container>

@@ -139,7 +139,7 @@ const Header = (props) => {
                         <MenuButton onClick={openDrawer}>
                             <MenuIcon />
                         </MenuButton>
-                        <DrawerMatchs open={drawer} close={closeDrawer} />
+                        <DrawerMatchs matchsList={props.matchsList} open={drawer} close={closeDrawer} />
                     </MenuContainerMatchMobile>
                 </HeaderMatchContainerMobile>
             </HeaderLogoContainer>

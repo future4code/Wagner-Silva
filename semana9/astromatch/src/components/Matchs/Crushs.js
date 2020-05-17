@@ -87,47 +87,7 @@ const ImageLoading = styled.div`
     color: ${colors.blackText};
 `
 
-const Crushs = () => {
-    const [crushProfile, setCrushProfile] = useState({});
-    const [newCrush, setNewCrush] = useState(true);
-
-    useEffect(() => {
-        if(newCrush) {
-            axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/wagner/person")
-                .then((response) => {
-                    setCrushProfile(response.data.profile);
-                })
-                .catch((response) => {
-                    return response.status;
-                })
-                setNewCrush(false)
-        }
-    }, [setCrushProfile, newCrush]);
-
-    const likeCrush = () => {
-        const users = JSON.parse(localStorage.getItem("users"));
-        const [ userInfo ] = users.filter( account => {
-            return account.id.toString() === localStorage.getItem("actualUser");
-        });
-
-        const oldUsers = users.filter(account => {
-            return account.id.toString() !== userInfo.id.toString();
-        });
-
-        const newUser = {
-            ...userInfo,
-            matchs: [...userInfo.matchs, crushProfile.id]
-        }
-
-        localStorage.setItem("users", JSON.stringify([...oldUsers, newUser]))
-
-        setNewCrush(true);
-    }
-
-    const unlikeCrush = () => {
-        setNewCrush(true);
-    }
-
+const Crushs = (props) => {
     return (
         <CrushsContainer>
             <CrushsTitleContainer>
@@ -135,20 +95,20 @@ const Crushs = () => {
             </CrushsTitleContainer>
             <CrushContainer>
                 <CrushPicture
-                    crushPicture={crushProfile.photo}
-                    crushName={crushProfile.name}
-                    crushAge={crushProfile.age}
-                    crushBio={crushProfile.bio}
+                    crushPicture={props.photo}
+                    crushName={props.name}
+                    crushAge={props.age}
+                    crushBio={props.bio}
                 />
             </CrushContainer>
             <ChooseContainer>
                 <OptionContainer>
-                    <ChooseButton color={colors.red} onClick={unlikeCrush}>
+                    <ChooseButton color={colors.red} onClick={props.unlike}>
                         <UnlikeIcon fontSize={"large"} />
                     </ChooseButton>
                 </OptionContainer>
                 <OptionContainer>
-                    <ChooseButton color={colors.green} onClick={likeCrush}>
+                    <ChooseButton color={colors.green} onClick={props.like}>
                         <LikeIcon fontSize={"large"} />
                     </ChooseButton>
                 </OptionContainer>

@@ -4,6 +4,7 @@ import Content from '../Content/Content';
 import Header from '../Header/Header';
 import Menu from './Menu';
 import Crushs from './Crushs';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const MatchsContent = styled(Content)`
@@ -14,11 +15,13 @@ const MatchsContent = styled(Content)`
 
 const Matchs = () => {
     const [ mobileScreen, setMobileScreen ] = useState(false);
+    const [matchs, setMatchs] = useState([]);
+    const [crushProfile, setCrushProfile] = useState({});
+    const [newCrush, setNewCrush] = useState(true);
 
     useLayoutEffect(() => {
         if(!mobileScreen) {
             if(window.innerWidth >= 320 && window.innerWidth <= 420) {
-                console.log("setando width");
                 setMobileScreen(true);
             }
         } else {
@@ -28,12 +31,78 @@ const Matchs = () => {
         }
     })
 
+    useEffect(() => {
+        axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/wagner/matches")
+            .then( (response) => {
+                setMatchs(response.data.matches);
+            })
+            .catch(() => {
+                console.log("deu ruim");
+            })
+    }, [setMatchs, setCrushProfile]);
+
+    useEffect(() => {
+        if(newCrush) {
+            axios.get("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/wagner/person")
+                .then((response) => {
+                    setCrushProfile(response.data.profile);
+                })
+                .catch((response) => {
+                    return response.status;
+                })
+                setNewCrush(false)
+        }
+    }, [setCrushProfile, newCrush]);
+
+    const likeCrush = () => {
+        const users = JSON.parse(localStorage.getItem("users"));
+        const [ userInfo ] = users.filter( account => {
+            return account.id.toString() === localStorage.getItem("actualUser");
+        });
+
+        const oldUsers = users.filter(account => {
+            return account.id.toString() !== userInfo.id.toString();
+        });
+
+        const newUser = {
+            ...userInfo,
+            matchs: [...userInfo.matchs, crushProfile.id]
+        }
+
+        localStorage.setItem("users", JSON.stringify([...oldUsers, newUser]))
+
+        axios.post("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/wagner/choose-person", {
+            id: crushProfile.id,
+            choice: true
+        })
+            .then((response) => {
+                setNewCrush(true);
+                return response.status;
+            })
+            .catch((response) => {
+                return response.status
+            })
+    }
+
+    const unlikeCrush = () => {
+        setNewCrush(true);
+    }
+
+    console.log(matchs)
+
     const ScreenMatchs = mobileScreen ? () => {
         return (
             <Container>
-                <Header mobileMatchs={true} />
+                <Header mobileMatchs={true} matchsList={matchs} />
                 <MatchsContent>
-                    <Crushs />
+                    <Crushs
+                        like={likeCrush}
+                        unlike={unlikeCrush}
+                        photo={crushProfile.photo}
+                        name={crushProfile.name}
+                        age={crushProfile.age}
+                        bio={crushProfile.bio}
+                    />
                 </MatchsContent>
             </Container>
         )
@@ -42,8 +111,15 @@ const Matchs = () => {
             <Container>
                 <Header logoCenter={true} />
                 <MatchsContent>
-                    <Menu visible={true}/>
-                    <Crushs />
+                    <Menu matchsList={matchs}/>
+                    <Crushs
+                        like={likeCrush}
+                        unlike={unlikeCrush}
+                        photo={crushProfile.photo}
+                        name={crushProfile.name}
+                        age={crushProfile.age}
+                        bio={crushProfile.bio}
+                    />
                 </MatchsContent>
             </Container>
         )

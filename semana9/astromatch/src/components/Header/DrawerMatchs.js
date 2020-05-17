@@ -9,7 +9,7 @@ const DrawerMatchs = (props) => {
             anchor={"left"}
             open={props.open}
         >
-            <MenuMatchMobile close={props.close}/>
+            <MenuMatchMobile matchsList={props.matchsList} close={props.close}/>
         </Drawer>
     )
 }
