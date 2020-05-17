@@ -140,13 +140,14 @@ const Menu = (props) => {
     })
 
     const matchsList = props.matchsList.filter( match => {
-        return userInfo.matches.indexOf(match.id) !== -1;
+        return userInfo.matchs.indexOf(match.id) !== -1;
     }).map( matchUser => {
+        console.log(matchUser)
         return (
             <MatchItem>
                 <AvatarContainer>
-                    <Avatar>{matchUser.username[0]}</Avatar>
-                    <p>{matchUser.username}</p>
+                    <Avatar><img src={matchUser.photo} width={"20"} height={"20"}/></Avatar>
+                    <p>{matchUser.name}</p>
                 </AvatarContainer>
             </MatchItem>
         )

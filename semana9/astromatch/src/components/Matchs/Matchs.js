@@ -39,7 +39,7 @@ const Matchs = () => {
             .catch(() => {
                 console.log("deu ruim");
             })
-    }, [setMatchs, setCrushProfile]);
+    }, [setMatchs, crushProfile]);
 
     useEffect(() => {
         if(newCrush) {
