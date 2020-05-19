@@ -1,10 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import colors from '../utils/colors';
 import links from '../utils/links';
 import styled from 'styled-components';
 
-const HomeContainer = styled.div`
+const HomePageContainer = styled.div`
     width: 100vw;
     height: 100vh;
 `
@@ -31,7 +32,7 @@ const InfoContainer = styled.div`
     height: 55%;
 `
 
-const ButtonRegister = styled.button`
+const Button = styled.button`
     background: none;
     width: 20%;
     height: 15%;
@@ -42,11 +43,21 @@ const ButtonRegister = styled.button`
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;
+
+    :hover, :focus {
+        background-color: ${colors.blackLight};
+        border-color: ${colors.black};
+        color: ${colors.white};
+    }
+
+    :focus {
+        outline: none;
+    }
 `
 
 const Home = () => {
     return (
-        <HomeContainer>
+        <HomePageContainer>
             <Header login={true} />
             <LogoContainer>
                 <Logo src={links.logo} />
@@ -54,9 +65,10 @@ const Home = () => {
             <InfoContainer>
                 <h1>Quebrando as barreiras do turismo</h1>
                 <h3>Faça sua primeira viagem espacial conosco!</h3>
-                <ButtonRegister>Quero me inscrever</ButtonRegister>
+                <Button>Quero viajar</Button>
+                <Button>Quero participar</Button>
             </InfoContainer>
-        </HomeContainer>
+        </HomePageContainer>
     )
 }
 

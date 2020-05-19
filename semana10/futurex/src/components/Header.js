@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import colors from '../utils/colors';
 import links from '../utils/links';
 import styled from 'styled-components';
@@ -40,12 +41,12 @@ const Button = styled.button`
     height: 50%;
     border: none;
     border-radius: 10px;
-    color: ${colors.orangeVariant};
+    color: ${colors.orangeLight};
     font-weight: bold;
     cursor: pointer;
 
     :hover {
-        border: 1px solid ${colors.orangeVariant};
+        border: 1px solid ${colors.orangeLight};
     }
 
     :focus {
@@ -54,13 +55,19 @@ const Button = styled.button`
 `
 
 const Header = (props) => {
+    let history = useHistory();
+
+    const goToLoginPage = () => {
+        history.push("/login")
+    }
+
     return (
         <HeaderContainer>
             <LogoContainer>
                 {props.logo ? <Logo src={links.logo} /> : null}
             </LogoContainer>
             {props.center ? null : <ButtonLoginContainer>
-                                        {props.login ? <Button>LOGIN</Button> : <Button>Sair</Button>}
+                                        {props.login ? <Button onClick={goToLoginPage}>LOGIN</Button> : <Button onClick={goToLoginPage}>Sair</Button>}
                                     </ButtonLoginContainer>
             }
         </HeaderContainer>
