@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
-import PageContainer from '../components/PageContainer';
+import useChangeTitle from '../hooks/useChangeTitle';
+import useInputValue from '../hooks/useInputValue';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -79,12 +80,18 @@ const Button = styled.button`
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     color: ${colors.white};
+    cursor: pointer;
+    outline: none;
 `
 
 const Login = () => {
+    useChangeTitle("FutureX - Login");
+    const [ username, onChangeUsername ] = useInputValue();
+    const [ password, onChangePassword ] = useInputValue();
+
     return (
         <LoginPageContainer>
-            <Header logo={true} />
+            <Header logo={true} center={true} />
             <LoginContainer>
                 <ContentContainer>
                     <ContentHeader>
@@ -93,11 +100,11 @@ const Login = () => {
                     <FormContainer>
                         <InputContainer>
                             <label>Nome de usuário:</label>
-                            <Input type={"text"} />
+                            <Input type={"text"} value={username} onChange={onChangeUsername} />
                         </InputContainer>
                         <InputContainer>
                             <label>Senha:</label>
-                            <Input type={"password"} />
+                            <Input type={"password"} value={password} onChange={onChangePassword} />
                         </InputContainer>
                     </FormContainer>
                     <ButtonLoginContainer>

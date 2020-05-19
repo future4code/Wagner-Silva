@@ -67,7 +67,7 @@ const Header = (props) => {
                 {props.logo ? <Logo src={links.logo} /> : null}
             </LogoContainer>
             {props.center ? null : <ButtonLoginContainer>
-                                        {props.login ? <Button onClick={goToLoginPage}>LOGIN</Button> : <Button onClick={goToLoginPage}>Sair</Button>}
+                                        {props.login ? <Button onClick={goToLoginPage}>LOGIN</Button> : <Button onClick={goToLoginPage}>SAIR</Button>}
                                     </ButtonLoginContainer>
             }
         </HeaderContainer>

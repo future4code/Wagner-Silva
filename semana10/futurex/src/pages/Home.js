@@ -43,19 +43,25 @@ const Button = styled.button`
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;
+    outline: none;
 
     :hover, :focus {
         background-color: ${colors.blackLight};
         border-color: ${colors.black};
         color: ${colors.white};
     }
-
-    :focus {
-        outline: none;
-    }
 `
 
 const Home = () => {
+    let history = useHistory();
+
+    const goToRegisterPage = () => {
+        history.push("/register")
+    }
+
+    const goToTripsListPage = () => {
+        history.push("/trips");
+    }
     return (
         <HomePageContainer>
             <Header login={true} />
@@ -65,8 +71,8 @@ const Home = () => {
             <InfoContainer>
                 <h1>Quebrando as barreiras do turismo</h1>
                 <h3>Faça sua primeira viagem espacial conosco!</h3>
-                <Button>Quero viajar</Button>
-                <Button>Quero participar</Button>
+                <Button onClick={goToTripsListPage}>Quero viajar</Button>
+                <Button onClick={goToRegisterPage}>Quero participar</Button>
             </InfoContainer>
         </HomePageContainer>
     )
