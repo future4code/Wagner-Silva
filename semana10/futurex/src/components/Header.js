@@ -17,7 +17,7 @@ const LogoContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10%;
+    width: 5%;
     height: 100%;
     position: absolute;
     z-index: 1;

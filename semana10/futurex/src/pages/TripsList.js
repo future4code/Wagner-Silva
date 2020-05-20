@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import colors from '../utils/colors';
 import styled from 'styled-components';
@@ -40,18 +41,36 @@ const ContentHeader = styled.header`
 const TripsRegistered = styled.section`
     width: 90%;
     height: 90%;
-    border: 1px solid black;
     overflow: scroll;
 `
 
 const Trip = styled.article`
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    align-items: center;
     width: 100%;
     height: 15%;
+`
+
+const ButtonDetails = styled.button`
+    background-color: ${colors.orangeDark};
+    width: 60%;
+    height: 50%;
+    justify-self: center;
     border: 1px solid ${colors.black};
+    border-radius: 5px;
+    font-weight: bold;
+    color: ${colors.white};
+    cursor: pointer;
+    outline: none;
 `
 
 const TripsList = () => {
+    let history = useHistory();
+
+    const goToTripDetails = () => {
+        history.push("/trips/viagem1");
+    }
     return (
         <TripsListPageContainer>
             <Header logo={true} center={true} />
@@ -61,17 +80,24 @@ const TripsList = () => {
                         <h1>Próximas viagens:</h1>
                     </ContentHeader>
                     <TripsRegistered>
-                        <Trip />
-                        <Trip />
-                        <Trip />
-                        <Trip />
-                        <Trip />
-                        <Trip />
-                        <Trip />
-                        <Trip />
-                        <Trip />
-                        <Trip />
-                        <Trip />
+                        <Trip>
+                            <h3>Nome viagem</h3>
+                            <p>Planeta</p>
+                            <p>Dias</p>
+                            <ButtonDetails onClick={goToTripDetails}>Detalhes</ButtonDetails>
+                        </Trip>
+                        <Trip>
+                            <h3>Nome viagem</h3>
+                            <p>Planeta</p>
+                            <p>Dias</p>
+                            <ButtonDetails>Detalhes</ButtonDetails>
+                        </Trip>
+                        <Trip>
+                            <h3>Nome viagem</h3>
+                            <p>Planeta</p>
+                            <p>Dias</p>
+                            <ButtonDetails>Detalhes</ButtonDetails>
+                        </Trip>
                     </TripsRegistered>
                 </ContentContainer>
             </TripsListContainer>
