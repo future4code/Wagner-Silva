@@ -67,10 +67,8 @@ const ButtonDetails = styled.button`
 
 const TripsList = () => {
     let history = useHistory();
+    const goToTripDetails = () => history.push("/trips/viagem1");
 
-    const goToTripDetails = () => {
-        history.push("/trips/viagem1");
-    }
     return (
         <TripsListPageContainer>
             <Header logo={true} center={true} />

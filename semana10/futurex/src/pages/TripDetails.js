@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import colors from '../utils/colors';
 import styled from 'styled-components';
@@ -85,6 +86,7 @@ const ButtonCandidate = styled.button`
 `
 
 const TripDetails = () => {
+    let history = useHistory();
     return (
         <TripDetailsPageContainer>
             <Header logo={true} center={true} />

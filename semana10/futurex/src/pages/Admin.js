@@ -1,9 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import Header from '../components/Header';
+import useChangeTitle from '../hooks/useChangeTitle';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
-import candidates from '../assets/candidates.svg';
 import createTrip from '../assets/new-trip.svg';
 import tripsImage from '../assets/trips.svg';
 
@@ -36,7 +37,7 @@ const OptionsContainer = styled.div`
 const Options = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 90%;
     height: 80%;
 `
@@ -72,6 +73,12 @@ const OptionTitle = styled.div`
 `
 
 const Admin = () => {
+    useChangeTitle("Admin");
+
+    let history = useHistory();
+    const goToCreateTripPage = () => history.push("/admin/trips/create");
+    const goToTripsListPage = () => history.push("/admin/trips");
+
     return (
         <AdminPageContainer>
             <Header logo={true} />
@@ -79,22 +86,16 @@ const Admin = () => {
                 <OptionsContainer>
                     <h3>OPÇÕES DE ADMINISTRADOR</h3>
                     <Options>
-                        <ButtonOption>
+                        <ButtonOption onClick={goToCreateTripPage}>
                             <OptionImage src={createTrip} alt={"Nova viagem"} />
                             <OptionTitle>
                                 <h2>Criar viagem</h2>
                             </OptionTitle>
                         </ButtonOption>
-                        <ButtonOption>
+                        <ButtonOption onClick={goToTripsListPage}>
                             <OptionImage src={tripsImage} alt={"Lista de viagens"} />
                             <OptionTitle>
                                 <h2>Lista de viagens</h2>
-                            </OptionTitle>
-                        </ButtonOption>
-                        <ButtonOption>
-                            <OptionImage src={candidates} alt={"Candidatos"} />
-                            <OptionTitle>
-                                <h2>Candidaturas</h2>
                             </OptionTitle>
                         </ButtonOption>
                     </Options>

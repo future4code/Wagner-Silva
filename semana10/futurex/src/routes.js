@@ -7,6 +7,7 @@ import CreateTrip from './pages/CreateTrip';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import SubmitCandidature from './pages/SubmitCandidature';
 import TripDetails from './pages/TripDetails';
 import TripsList from './pages/TripsList';
 
@@ -30,7 +31,7 @@ const Routes = () => {
                 <Route exact path={"/trips"}>
                     <TripsList />
                 </Route>
-                <Route exact path={"/admin/trips/create"}>
+                <Route exact path={"/admin/trips"}>
                     <TripsList />
                 </Route>
                 <Route path={"/admin/trips/create"}>
@@ -41,6 +42,9 @@ const Routes = () => {
                 </Route>
                 <Route exact path={"/admin/trips/:trip_id"}>
                     <TripDetails />
+                </Route>
+                <Route path={"/trips/:trip_id/candidature"}>
+                    <SubmitCandidature />
                 </Route>
                 <Route exact path={"/admin/trips/:trip_id/candidates"}>
                     <CandidatesList />

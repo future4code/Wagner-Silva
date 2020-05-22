@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import Header from '../components/Header';
+import useChangeTitle from '../hooks/useChangeTitle';
 import colors from '../utils/colors';
 import links from '../utils/links';
 import styled from 'styled-components';
@@ -53,15 +54,12 @@ const Button = styled.button`
 `
 
 const Home = () => {
+    useChangeTitle("Vá ao espaço conosco!")
+    
     let history = useHistory();
+    const goToRegisterPage = () => history.push("/register");
+    const goToTripsListPage = () => history.push("/trips");
 
-    const goToRegisterPage = () => {
-        history.push("/register")
-    }
-
-    const goToTripsListPage = () => {
-        history.push("/trips");
-    }
     return (
         <HomePageContainer>
             <Header login={true} />

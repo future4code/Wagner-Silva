@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 
 const useChangeTitle = (title) => {
-    useEffect(() => {
-        document.title = title;
+    useLayoutEffect(() => {
+        document.title = `FutureX - ${title}`;
     })
 }
 

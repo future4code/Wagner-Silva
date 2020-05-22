@@ -1,6 +1,8 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import useInputValue from '../hooks/useInputValue';
+import useChangeTitle from '../hooks/useChangeTitle';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -84,9 +86,14 @@ const Button = styled.button`
 `
 
 const Register = () => {
-    const [ username, onChangeUsername ] = useInputValue();
-    const [ password, onChangePassword ] = useInputValue();
-    const [ confirmPassword, onChangeConfirmPassword ] = useInputValue();
+    useChangeTitle("Cadastro");
+    const [ username, onChangeUsername ] = useInputValue("");
+    const [ password, onChangePassword ] = useInputValue("");
+    const [ confirmPassword, onChangeConfirmPassword ] = useInputValue("");
+
+    let history = useHistory();
+
+    const goToAdminPage = () => history.replace("/admin");
 
     return (
         <RegisterPageContainer>
@@ -111,7 +118,7 @@ const Register = () => {
                         </InputContainer>
                     </FormContainer>
                     <ButtonRegisterContainer>
-                        <Button>CADASTRAR</Button>
+                        <Button onClick={goToAdminPage}>CADASTRAR</Button>
                     </ButtonRegisterContainer>
                 </ContentContainer>
             </RegisterContainer>

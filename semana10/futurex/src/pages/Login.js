@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
@@ -85,9 +86,13 @@ const Button = styled.button`
 `
 
 const Login = () => {
-    useChangeTitle("FutureX - Login");
-    const [ username, onChangeUsername ] = useInputValue();
-    const [ password, onChangePassword ] = useInputValue();
+    useChangeTitle("Login");
+    const [ username, onChangeUsername ] = useInputValue("");
+    const [ password, onChangePassword ] = useInputValue("");
+
+    let history = useHistory();
+
+    const goToAdminPage = () => history.replace("/admin");
 
     return (
         <LoginPageContainer>
@@ -108,7 +113,7 @@ const Login = () => {
                         </InputContainer>
                     </FormContainer>
                     <ButtonLoginContainer>
-                        <Button>ENTRAR</Button>
+                        <Button onClick={goToAdminPage}>ENTRAR</Button>
                     </ButtonLoginContainer>
                 </ContentContainer>
             </LoginContainer>
