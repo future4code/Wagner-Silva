@@ -1,67 +1,19 @@
 import React from 'react';
+import Button from '../components/Button';
+import ButtonSubmitContainer from '../components/ButtonContainer';
+import ContentContainer from '../components/ContentContainer';
+import ContentHeader from '../components/ContentHeader';
+import FormContainer from '../components/FormContainer';
 import Header from '../components/Header';
+import Input from '../components/Input';
+import InputContainer from '../components/InputContainer';
+import SubmitCandidaturePageContainer from '../components/PageContainer';
+import SubmitCandidatureContainer from '../components/MainContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
-const SubmitCandidaturePageContainer = styled.div`
-    width: 100vw;
-    height: 100vh;
-`
-
-const SubmitCandidatureContainer = styled.div`
-    background-color: ${colors.orange};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 90%;
-`
-
-const ContentContainer = styled.section`
-    background-color: ${colors.whiteVariant};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 50%;
-    height: 90%;
-    border-radius: 10px;
-    color: ${colors.blackLight};
-`
-
-const ContentHeader = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 10%;
-`
-
-const FormContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    height: 70%;
-`
-
-const InputContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 90%;
-    height: 20%;
-`
-
-const Input = styled.input`
-    width: 80%;
-    height: 40%;
-    border: 1px solid ${colors.blackLight};
-    border-radius: 5px;
-`
 
 const TextArea = styled.textarea`
     width: 80%;
@@ -69,29 +21,9 @@ const TextArea = styled.textarea`
     border-radius: 5px;
 `
 
-const ButtonLoginContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 20%;
-`
-
-const Button = styled.button`
-    background-color: ${colors.blackLight};
-    width: 30%;
-    height: 50%;
-    border: 1px solid ${colors.orangeDark};
-    border-radius: 20px;
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
-    color: ${colors.white};
-    cursor: pointer;
-    outline: none;
-`
 
 const SubmitCandidature = () => {
-    useChangeTitle("Candidatura")
+    useChangeTitle("Enviar candidatura")
     const [candidateName, onChangeCandidateName] = useInputValue("");
     const [age, onChangeAge] = useInputValue("");
     const [candidateText, onChangeCandidateText] = useInputValue("");
@@ -128,9 +60,9 @@ const SubmitCandidature = () => {
                             <TextArea rows={5} value={candidateText} onChange={onChangeCandidateText} />
                         </InputContainer>
                     </FormContainer>
-                    <ButtonLoginContainer>
+                    <ButtonSubmitContainer>
                         <Button>ENVIAR</Button>
-                    </ButtonLoginContainer>
+                    </ButtonSubmitContainer>
                 </ContentContainer>
             </SubmitCandidatureContainer>
         </SubmitCandidaturePageContainer>

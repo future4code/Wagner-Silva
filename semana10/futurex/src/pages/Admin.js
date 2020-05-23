@@ -1,6 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import AdminPageContainer from '../components/PageContainer';
+import AdminContainer from '../components/MainContainer';
 import Header from '../components/Header';
+import OptionsContainer from '../components/ContentContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import colors from '../utils/colors';
 import styled from 'styled-components';
@@ -8,31 +11,6 @@ import styled from 'styled-components';
 import createTrip from '../assets/new-trip.svg';
 import tripsImage from '../assets/trips.svg';
 
-const AdminPageContainer = styled.div`
-    width: 100vw;
-    height: 100vh;
-`
-
-const AdminContainer = styled.div`
-    background-color: ${colors.orange};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 90%;
-`
-
-const OptionsContainer = styled.div`
-    background-color: ${colors.whiteVariant};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 50%;
-    height: 90%;
-    border-radius: 10px;
-    color: ${colors.blackLight};
-`
 
 const Options = styled.div`
     display: flex;

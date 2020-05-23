@@ -1,68 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import Button from '../components/Button';
+import ButtonLoginContainer from '../components/ButtonContainer';
+import ContentContainer from '../components/ContentContainer';
+import ContentHeader from '../components/ContentHeader';
+import CreateTripPageContainer from '../components/PageContainer';
+import CreateTripContainer from '../components/MainContainer';
+import FormContainer from '../components/FormContainer';
 import Header from '../components/Header';
+import Input from '../components/Input';
+import InputContainer from '../components/InputContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
 import colors from '../utils/colors';
 import styled from 'styled-components';
-
-const CreateTripPageContainer = styled.div`
-    width: 100vw;
-    height: 100vh;
-`
-
-const CreateTripContainer = styled.div`
-    background-color: ${colors.orange};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 90%;
-`
-
-const ContentContainer = styled.section`
-    background-color: ${colors.whiteVariant};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 50%;
-    height: 90%;
-    border-radius: 10px;
-    color: ${colors.blackLight};
-`
-
-const ContentHeader = styled.header`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 10%;
-`
-
-const FormContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    height: 70%;
-`
-
-const InputContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 90%;
-    height: 20%;
-`
-
-const Input = styled.input`
-    width: 80%;
-    height: 40%;
-    border: 1px solid ${colors.blackLight};
-    border-radius: 5px;
-`
 
 const Select = styled.select`
     width: 80%;
@@ -71,29 +22,8 @@ const Select = styled.select`
     border-radius: 5px;
 `
 
-const ButtonLoginContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 20%;
-`
-
-const Button = styled.button`
-    background-color: ${colors.blackLight};
-    width: 30%;
-    height: 50%;
-    border: 1px solid ${colors.orangeDark};
-    border-radius: 20px;
-    font-family: 'Lato', sans-serif;
-    font-weight: bold;
-    color: ${colors.white};
-    cursor: pointer;
-    outline: none;
-`
-
 const CreateTrip = () => {
-    useChangeTitle("Criar viagem")
+    useChangeTitle("Criar viagem");
     const [tripName, onChangeTripName] = useInputValue("");
     const [planet, onChangePlanet] = useInputValue("Mercúrio");
     const [date, onChangeDate] = useInputValue("");

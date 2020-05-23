@@ -1,72 +1,18 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import DescriptionContainer from '../components/DescriptionContainer';
+import Details from '../components/Details';
+import DurationContainer from '../components/SingleLineContainer';
 import Header from '../components/Header';
+import InfoContainer from '../components/InfoContainer';
+import Line from '../components/Line';
+import Trip from '../components/ContentContainer';
+import TripDetailsContainer from '../components/MainContainer';
+import TripDetailsPageContainer from '../components/PageContainer';
+import useChangeTitle from '../hooks/useChangeTitle';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
-const TripDetailsPageContainer = styled.div`
-    width: 100vw;
-    height: 100vh;
-`
-
-const TripDetailsContainer = styled.div`
-    background-color: ${colors.orange};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 90%;
-`
-
-const Trip = styled.div`
-    background-color: ${colors.whiteVariant};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 50%;
-    height: 90%;
-    border-radius: 10px;
-    color: ${colors.blackLight};
-`
-
-const Details = styled.section`
-    display: grid;
-    grid-template-rows: 40% 50%;
-    justify-items: center;
-    width: 90%;
-    height: 80%;
-`
-
-const InfoContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-`
-
-const DurationContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    align-items: center;
-    width: 100%;
-    height: 10%;
-`
-
-const DescriptionContainer = styled.div`
-    display: grid;
-    grid-template-rows: 5% 25% 75%;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-`
-
-const Line = styled.hr`
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid ${colors.black};
-`
 
 const DescriptionText = styled.p`
     align-self: flex-start;
@@ -86,6 +32,7 @@ const ButtonCandidate = styled.button`
 `
 
 const TripDetails = () => {
+    useChangeTitle("Detalhes da viagem");
     let history = useHistory();
     return (
         <TripDetailsPageContainer>
