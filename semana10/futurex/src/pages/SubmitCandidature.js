@@ -16,7 +16,7 @@ import styled from 'styled-components';
 
 
 const TextArea = styled.textarea`
-    width: 80%;
+    width: 100%;
     border: 1px solid ${colors.blackLight};
     border-radius: 5px;
 `
@@ -56,7 +56,7 @@ const SubmitCandidature = () => {
                             <Input type={"text"} value={country} onChange={onChangeCountry} />
                         </InputContainer>
                         <InputContainer>
-                            <label>Por que a FutureX deve aceitá-lo nesta viagem ?</label>
+                            <label>Quais motivos para a FutureX aceitá-lo ?</label>
                             <TextArea rows={5} value={candidateText} onChange={onChangeCandidateText} />
                         </InputContainer>
                     </FormContainer>

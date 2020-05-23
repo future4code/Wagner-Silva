@@ -8,18 +8,11 @@ import DescriptionContainer from '../components/DescriptionContainer';
 import Header from '../components/Header';
 import InfoContainer from '../components/InfoContainer';
 import Line from '../components/Line';
+import ResponseContainer from '../components/SingleLineContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
-
-const ResponseContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-    align-items: center;
-    width: 100%;
-    height: 10%;
-`
 
 const PresentationText = styled.p`
     align-self: flex-start;
@@ -36,7 +29,13 @@ const ButtonCandidate = styled.button`
     color: ${colors.white};
     cursor: pointer;
     outline: none;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 50%;
+        font-size: 0.8em;
+    }
 `
+
 
 const CandidateDetails = () => {
     useChangeTitle("Detalhes do candidato");

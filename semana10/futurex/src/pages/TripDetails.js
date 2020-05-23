@@ -29,6 +29,16 @@ const ButtonCandidate = styled.button`
     color: ${colors.white};
     cursor: pointer;
     outline: none;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 50%;
+        font-size: 1em;
+    }
+
+    @media (min-width: 421px) and (max-width: 800px) {
+        width: 40%;
+        font-size: 1em;
+    }
 `
 
 const TripDetails = () => {

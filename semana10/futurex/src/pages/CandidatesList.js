@@ -14,10 +14,20 @@ import styled from 'styled-components';
 
 
 const ButtonDetails = styled(Button)`
+    background-color: ${colors.orangeDark};
     width: 60%;
     justify-self: center;
     border: 1px solid ${colors.black};
     border-radius: 5px;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 100%;
+        font-size: 0.8em;
+    }
+
+    @media (min-width: 421px) and (max-width: 800px) {
+        width: 80%;
+    }
 `
 
 const CandidatesList = () => {

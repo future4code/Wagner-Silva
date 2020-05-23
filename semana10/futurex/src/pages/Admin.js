@@ -31,6 +31,16 @@ const ButtonOption = styled.button`
     width: 30%;
     height: 50%;
     cursor: pointer;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 45%;
+        font-size: 0.8em;
+    }
+
+    @media (min-width: 421px) and (max-width: 800px) {
+        width: 45%;
+        font-size: 1em;
+    }
 `
 
 const OptionImage = styled.img`

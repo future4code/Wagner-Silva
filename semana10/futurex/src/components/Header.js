@@ -21,6 +21,14 @@ const LogoContainer = styled.div`
     height: 100%;
     position: absolute;
     z-index: 1;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 20%;
+    }
+
+    @media (min-width: 421px) and (max-width: 800px) {
+        width: 20%;
+    }
 `
 
 const Logo = styled.img`
@@ -34,6 +42,10 @@ const ButtonLoginContainer = styled.div`
     justify-content: flex-end;
     width: 90%;
     height: 100%;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 85%;
+    }
 `
 const Button = styled.button`
     background: none;

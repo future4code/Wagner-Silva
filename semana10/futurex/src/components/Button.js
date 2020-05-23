@@ -13,6 +13,17 @@ const ButtonElement = styled.button`
     color: ${colors.white};
     cursor: pointer;
     outline: none;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 45%;
+        border-radius: 15px;
+        font-size: 1em;
+    }
+
+    @media (min-width: 421px) and (max-width: 800px) {
+        width: 40%;
+        font-size: 1em;
+    }
 `
 
 const Button = (props) => {

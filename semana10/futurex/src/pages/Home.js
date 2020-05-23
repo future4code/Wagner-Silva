@@ -31,6 +31,11 @@ const InfoContainer = styled.div`
     color: ${colors.white};
     width: 100%;
     height: 55%;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        font-size: 0.8em;
+        text-align: center;
+    }
 `
 
 const Button = styled.button`
@@ -49,6 +54,20 @@ const Button = styled.button`
     :hover, :focus {
         background-color: ${colors.blackLight};
         border-color: ${colors.black};
+        color: ${colors.white};
+    }
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        background-color: ${colors.blackLight};
+        width: 40%;
+        font-size: 1.2em;
+        color: ${colors.white};
+    }
+    
+    @media (min-width: 421px) and (max-width: 800px) {
+        background-color: ${colors.blackLight};
+        width: 30%;
+        font-size: 1.2em;
         color: ${colors.white};
     }
 `

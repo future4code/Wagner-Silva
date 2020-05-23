@@ -18,6 +18,16 @@ import styled from 'styled-components';
 const ContentContainer = styled(Content)`
     width: 30%;
     height: 80%;
+
+    @media (min-width: 320px) and (max-width: 420px) {
+        width: 70%;
+        font-size: 0.8em;
+    }
+
+    @media (min-width: 421px) and (max-width: 800px) {
+        width: 60%;
+        font-size: 1.2em;
+    }
 `
 
 const Login = () => {
