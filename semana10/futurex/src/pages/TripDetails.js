@@ -1,5 +1,5 @@
-import React from 'react';
-import { useHistory } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { useHistory, useParams } from 'react-router';
 import DescriptionContainer from '../components/DescriptionContainer';
 import Details from '../components/Details';
 import DurationContainer from '../components/SingleLineContainer';
@@ -10,6 +10,7 @@ import Trip from '../components/ContentContainer';
 import TripDetailsContainer from '../components/MainContainer';
 import TripDetailsPageContainer from '../components/PageContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
+import axios from 'axios';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -43,7 +44,19 @@ const ButtonCandidate = styled.button`
 
 const TripDetails = () => {
     useChangeTitle("Detalhes da viagem");
+    const [ trip, setTrip ] = useState({});
+
+    const pathParams = useParams();
     let history = useHistory();
+
+    useEffect(() => {
+        axios
+            .get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/wagner/trip/${pathParams.trip_id}`)
+            .then( response => {
+                setTrip(response.data)
+            })
+    })
+
     return (
         <TripDetailsPageContainer>
             <Header logo={true} center={true} />

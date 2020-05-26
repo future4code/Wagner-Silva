@@ -6,7 +6,7 @@ const Container = styled.article`
     grid-template-columns: 2fr repeat(3, 1fr);
     align-items: center;
     width: 100%;
-    height: 15%;
+    height: 20%;
 `
 
 const ListItem = (props) => {
