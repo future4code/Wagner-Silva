@@ -12,6 +12,9 @@ import LoginContainer from '../components/MainContainer';
 import LoginPageContainer from '../components/PageContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
+import { usePrivatePage } from '../hooks/usePrivatePage';
+import axios from 'axios';
+import links from '../utils/links';
 import styled from 'styled-components';
 
 
@@ -32,12 +35,28 @@ const ContentContainer = styled(Content)`
 
 const Login = () => {
     useChangeTitle("Login");
-    const [ username, onChangeUsername ] = useInputValue("");
+    usePrivatePage();
+
+    const [ email, onChangeEmail ] = useInputValue("");
     const [ password, onChangePassword ] = useInputValue("");
 
     let history = useHistory();
 
-    const goToAdminPage = () => history.replace("/admin");
+    const login = async () => {
+        const body = {
+            email,
+            password
+        }
+
+        try {
+            const response = await axios.post(`${links.baseUrlAPI}/login`, body);
+            sessionStorage.setItem('token', response.data.token);
+            history.replace("/admin");
+        } catch(error) {
+            alert("Email ou senha inexistentes")
+            history.replace("/register")
+        }
+    } 
 
     return (
         <LoginPageContainer>
@@ -49,8 +68,8 @@ const Login = () => {
                     </ContentHeader>
                     <FormContainer>
                         <InputContainer>
-                            <label>Nome de usuário:</label>
-                            <Input type={"text"} value={username} onChange={onChangeUsername} />
+                            <label>Email:</label>
+                            <Input type={"email"} value={email} onChange={onChangeEmail} />
                         </InputContainer>
                         <InputContainer>
                             <label>Senha:</label>
@@ -58,7 +77,7 @@ const Login = () => {
                         </InputContainer>
                     </FormContainer>
                     <ButtonLoginContainer>
-                        <Button onClick={goToAdminPage}>ENTRAR</Button>
+                        <Button onClick={login}>ENTRAR</Button>
                     </ButtonLoginContainer>
                 </ContentContainer>
             </LoginContainer>

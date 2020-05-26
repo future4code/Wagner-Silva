@@ -9,6 +9,7 @@ import CandidatesListPageContainer from '../components/PageContainer';
 import CandidatesRegistered from '../components/ItemsRegistered';
 import Header from '../components/Header';
 import useChangeTitle from '../hooks/useChangeTitle';
+import { usePrivatePage } from '../hooks/usePrivatePage';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -32,6 +33,7 @@ const ButtonDetails = styled(Button)`
 
 const CandidatesList = () => {
     useChangeTitle("Lista de candidatos");
+    usePrivatePage();
 
     let history = useHistory();
     const goToCandidateDetails = () => history.push("/admin/candidates/1/candidates/1");

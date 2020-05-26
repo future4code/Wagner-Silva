@@ -8,10 +8,12 @@ import FormContainer from '../components/FormContainer';
 import Input from '../components/Input';
 import InputContainer from '../components/InputContainer';
 import Header from '../components/Header';
-import RegisterPageContainer from '../components/PageContainer';
 import RegisterContainer from '../components/MainContainer';
-import useInputValue from '../hooks/useInputValue';
+import RegisterPageContainer from '../components/PageContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
+import useInputValue from '../hooks/useInputValue';
+import axios from 'axios';
+import links from '../utils/links';
 import styled from 'styled-components';
 
 
@@ -33,13 +35,32 @@ const ContentContainer = styled(Content)`
 
 const Register = () => {
     useChangeTitle("Cadastro");
-    const [ username, onChangeUsername ] = useInputValue("");
+    const [ email, onChangeEmail ] = useInputValue("");
     const [ password, onChangePassword ] = useInputValue("");
     const [ confirmPassword, onChangeConfirmPassword ] = useInputValue("");
 
     let history = useHistory();
 
-    const goToAdminPage = () => history.replace("/admin");
+    const register = async () => {
+        if(password === confirmPassword) {
+            const body = {
+                email,
+                password
+            }
+
+            console.log(body);
+
+            try {
+                await axios.post(`${links.baseUrlAPI}/signup`, body);
+                alert("Você foi cadastrado com sucesso");
+                history.replace("/login")
+            } catch(error) {
+                alert("Erro no cadastro");
+            }
+        } else {
+            alert("As senhas digitadas não estão iguais")
+        }
+    }
 
     return (
         <RegisterPageContainer>
@@ -51,8 +72,8 @@ const Register = () => {
                     </ContentHeader>
                     <FormContainer>
                         <InputContainer>
-                            <label>Nome de usuário:</label>
-                            <Input type={"text"} value={username} onChange={onChangeUsername} />
+                            <label>Email:</label>
+                            <Input type={"email"} value={email} onChange={onChangeEmail} />
                         </InputContainer>
                         <InputContainer>
                             <label>Senha:</label>
@@ -64,7 +85,7 @@ const Register = () => {
                         </InputContainer>
                     </FormContainer>
                     <ButtonRegisterContainer>
-                        <Button onClick={goToAdminPage}>CADASTRAR</Button>
+                        <Button onClick={register}>CADASTRAR</Button>
                     </ButtonRegisterContainer>
                 </ContentContainer>
             </RegisterContainer>

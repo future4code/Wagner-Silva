@@ -12,6 +12,7 @@ import Input from '../components/Input';
 import InputContainer from '../components/InputContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
+import { usePrivatePage } from '../hooks/usePrivatePage';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -24,6 +25,8 @@ const Select = styled.select`
 
 const CreateTrip = () => {
     useChangeTitle("Criar viagem");
+    usePrivatePage();
+    
     const [tripName, onChangeTripName] = useInputValue("");
     const [planet, onChangePlanet] = useInputValue("Mercúrio");
     const [date, onChangeDate] = useInputValue("");

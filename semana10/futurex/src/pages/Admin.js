@@ -5,6 +5,7 @@ import AdminContainer from '../components/MainContainer';
 import Header from '../components/Header';
 import OptionsContainer from '../components/ContentContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
+import { usePrivatePage } from '../hooks/usePrivatePage';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -62,6 +63,7 @@ const OptionTitle = styled.div`
 
 const Admin = () => {
     useChangeTitle("Admin");
+    usePrivatePage();
 
     let history = useHistory();
     const goToCreateTripPage = () => history.push("/admin/trips/create");

@@ -10,6 +10,7 @@ import TripsListContainer from '../components/MainContainer';
 import TripsListPageContainer from '../components/PageContainer';
 import TripsRegistered from '../components/ItemsRegistered';
 import useChangeTitle from '../hooks/useChangeTitle';
+import { usePrivatePage } from '../hooks/usePrivatePage';
 import axios from 'axios';
 import links from '../utils/links';
 import colors from '../utils/colors';
@@ -52,6 +53,7 @@ const PlanetContainer = styled.div`
 
 const TripsList = () => {
     useChangeTitle("Lista de viagens");
+    usePrivatePage();
 
     const [ trips, setTrips ] = useState([]);
     

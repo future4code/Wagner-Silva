@@ -10,6 +10,7 @@ import InfoContainer from '../components/InfoContainer';
 import Line from '../components/Line';
 import ResponseContainer from '../components/SingleLineContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
+import { usePrivatePage } from '../hooks/usePrivatePage';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -39,6 +40,8 @@ const ButtonCandidate = styled.button`
 
 const CandidateDetails = () => {
     useChangeTitle("Detalhes do candidato");
+    usePrivatePage();
+    
     let history = useHistory();
     const goToTripsListPage = () => history.goBack();
 

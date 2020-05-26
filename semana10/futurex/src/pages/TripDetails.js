@@ -10,6 +10,7 @@ import Trip from '../components/ContentContainer';
 import TripDetailsContainer from '../components/MainContainer';
 import TripDetailsPageContainer from '../components/PageContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
+import { usePrivatePage } from '../hooks/usePrivatePage';
 import axios from 'axios';
 import colors from '../utils/colors';
 import styled from 'styled-components';
@@ -44,6 +45,8 @@ const ButtonCandidate = styled.button`
 
 const TripDetails = () => {
     useChangeTitle("Detalhes da viagem");
+    usePrivatePage();
+    
     const [ trip, setTrip ] = useState({});
 
     const pathParams = useParams();
