@@ -47,12 +47,17 @@ const CreateTrip = () => {
             <CreateTripContainer>
                 <ContentContainer>
                     <ContentHeader>
-                        <h3>Cria viagem</h3>
+                        <h3>Criar viagem</h3>
                     </ContentHeader>
                     <FormContainer>
                         <InputContainer>
-                            <label>Nome da viagem:</label>
-                            <Input type={"text"} value={tripName} onChange={onChangeTripName} />
+                            <label forHtml={"trip-name"}>Nome da viagem:</label>
+                            <Input id={"trip-name"}
+                                type={"text"}
+                                value={tripName} 
+                                onChange={onChangeTripName}
+                                required={true}
+                            />
                         </InputContainer>
                         <InputContainer>
                             <label>Planeta:</label>
@@ -72,10 +77,10 @@ const CreateTrip = () => {
                             <label>Duração:</label>
                             <Input type={"number"} value={duration} onChange={onChangeDuration} />
                         </InputContainer>
+                        <ButtonLoginContainer>
+                            <Button onSubmit={saveTrip}>CRIAR</Button>
+                        </ButtonLoginContainer>
                     </FormContainer>
-                    <ButtonLoginContainer>
-                        <Button onClick={saveTrip}>CRIAR</Button>
-                    </ButtonLoginContainer>
                 </ContentContainer>
             </CreateTripContainer>
         </CreateTripPageContainer>

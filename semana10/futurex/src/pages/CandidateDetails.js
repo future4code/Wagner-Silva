@@ -1,5 +1,5 @@
-import React from 'react';
-import { useHistory } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router';
 import Candidate from '../components/ContentContainer';
 import CandidateDetailsPageContainer from '../components/PageContainer';
 import CandidateDetailsContainer from '../components/MainContainer';
@@ -11,6 +11,8 @@ import Line from '../components/Line';
 import ResponseContainer from '../components/SingleLineContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import { usePrivatePage } from '../hooks/usePrivatePage';
+import axios from 'axios';
+import { baseUrlAPI } from '../utils/links';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -27,6 +29,7 @@ const ButtonCandidate = styled.button`
     border: none;
     border-radius: 5px;
     font-weight: bold;
+    font-size: 0.75em;
     color: ${colors.white};
     cursor: pointer;
     outline: none;
@@ -41,9 +44,45 @@ const ButtonCandidate = styled.button`
 const CandidateDetails = () => {
     useChangeTitle("Detalhes do candidato");
     usePrivatePage();
+
+    const [candidate, setCandidate] = useState({});
     
+    const pathParams = useParams();
     let history = useHistory();
-    const goToTripsListPage = () => history.goBack();
+
+    useEffect(() => {
+        axios
+            .get(`${baseUrlAPI}/trip/${pathParams.trip_id}`, {
+                headers: {
+                    auth: sessionStorage.getItem("token")
+                }
+            })
+            .then( response => {
+                setCandidate(response.data.trip.candidates.find(element => element.id === pathParams.candidate_id));
+            })
+            .catch( error => {
+                console.log(error)
+                alert("Erro na obtenção dos dados");
+            })
+    })
+
+
+    const decideCandidate = async (decision) => {
+        const body = { approve: decision };
+
+        try {
+            await axios.put(`${baseUrlAPI}/trips/${pathParams.trip_id}/candidates/${pathParams.candidate_id}/decide`, body, {
+                headers: {
+                    auth: sessionStorage.getItem("token")
+                }
+            });
+            history.goBack();
+        } catch {
+            alert("Erro no envio dos dados");
+        }
+
+
+    }
 
     return (
         <CandidateDetailsPageContainer>
@@ -52,20 +91,20 @@ const CandidateDetails = () => {
                 <Candidate>
                     <Details>
                         <InfoContainer>
-                            <h3>Nome do candidato</h3>
-                            <p>País</p>
-                            <p>Profissão</p>
-                            <p>Idade</p>
+                            <h3>{candidate.name}</h3>
+                            <p>{candidate.country}</p>
+                            <p>{candidate.profession}</p>
+                            <p>{candidate.age}</p>
                         </InfoContainer>
                         <DescriptionContainer>
                             <Line />
                             <h4>Texto de apresentação:</h4>
-                            <PresentationText>kowngowrngopqrgnp</PresentationText>
+                            <PresentationText>{candidate.applicationText}</PresentationText>
                         </DescriptionContainer>
                     </Details>
                     <ResponseContainer>
-                        <ButtonCandidate color={colors.red} onClick={goToTripsListPage}>REJEITAR CANDIDATURA</ButtonCandidate>
-                        <ButtonCandidate color={colors.greenDark} onClick={goToTripsListPage}>ACEITAR CANDIDATURA</ButtonCandidate>
+                        <ButtonCandidate color={colors.red} onClick={() => decideCandidate(false)}>REJEITAR CANDIDATURA</ButtonCandidate>
+                        <ButtonCandidate color={colors.greenDark} onClick={() => decideCandidate(true)}>ACEITAR CANDIDATURA</ButtonCandidate>
                     </ResponseContainer>
                 </Candidate>
             </CandidateDetailsContainer>

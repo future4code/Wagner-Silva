@@ -1,5 +1,5 @@
-import React from 'react';
-import { useHistory } from 'react-router';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router';
 import Button from '../components/Button';
 import Candidate from '../components/ListItem';
 import Candidates from '../components/ContentContainer';
@@ -10,6 +10,8 @@ import CandidatesRegistered from '../components/ItemsRegistered';
 import Header from '../components/Header';
 import useChangeTitle from '../hooks/useChangeTitle';
 import { usePrivatePage } from '../hooks/usePrivatePage';
+import axios from 'axios';
+import { baseUrlAPI } from '../utils/links';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -35,8 +37,38 @@ const CandidatesList = () => {
     useChangeTitle("Lista de candidatos");
     usePrivatePage();
 
+    const [ candidates, setCandidates ] = useState([]);
+
+    const pathParams = useParams();
     let history = useHistory();
-    const goToCandidateDetails = () => history.push("/admin/candidates/1/candidates/1");
+
+    useEffect(() => {
+        axios
+            .get(`${baseUrlAPI}/trip/${pathParams.trip_id}`, {
+                headers: {
+                    auth: sessionStorage.getItem("token")
+                }
+            })
+            .then( response => {
+                setCandidates(response.data.trip.candidates);
+            })
+            .catch( error => {
+                alert("Erro na obtenção dos dados");
+            })
+    })
+
+    const goToCandidateDetails = (id) => history.push(`/admin/trips/${pathParams.trip_id}/candidates/${id}`);
+
+    const candidatesList = candidates.map( candidate => {
+        return (
+            <Candidate key={candidate.id}>
+                <h3>{candidate.name}</h3>
+                <p>País: {candidate.country}</p>
+                <p>Idade: {candidate.age}</p>
+                <ButtonDetails onClick={() => goToCandidateDetails(candidate.id)}>Detalhes</ButtonDetails>
+            </Candidate>
+        )
+    })
 
     return (
         <CandidatesListPageContainer>
@@ -47,24 +79,7 @@ const CandidatesList = () => {
                         <h1>Candidatos:</h1>
                     </CandidatesHeader>
                     <CandidatesRegistered>
-                        <Candidate>
-                            <h3>Nome do candidato</h3>
-                            <p>País</p>
-                            <p>Idade</p>
-                            <ButtonDetails onClick={goToCandidateDetails}>Detalhes</ButtonDetails>
-                        </Candidate>
-                        <Candidate>
-                            <h3>Nome do candidato</h3>
-                            <p>País</p>
-                            <p>Idade</p>
-                            <ButtonDetails>Detalhes</ButtonDetails>
-                        </Candidate>
-                        <Candidate>
-                            <h3>Nome do candidato</h3>
-                            <p>País</p>
-                            <p>Idade</p>
-                            <ButtonDetails>Detalhes</ButtonDetails>
-                        </Candidate>
+                        {candidatesList}
                     </CandidatesRegistered>
                 </Candidates>
             </CandidatesListContainer>
