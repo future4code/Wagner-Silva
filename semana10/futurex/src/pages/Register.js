@@ -13,7 +13,7 @@ import RegisterPageContainer from '../components/PageContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
 import axios from 'axios';
-import links from '../utils/links';
+import { baseUrlAPI } from '../utils/links';
 import styled from 'styled-components';
 
 
@@ -51,7 +51,7 @@ const Register = () => {
             console.log(body);
 
             try {
-                await axios.post(`${links.baseUrlAPI}/signup`, body);
+                await axios.post(`${baseUrlAPI}/signup`, body);
                 alert("Você foi cadastrado com sucesso");
                 history.replace("/login")
             } catch(error) {

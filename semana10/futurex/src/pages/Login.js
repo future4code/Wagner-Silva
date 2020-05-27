@@ -12,9 +12,8 @@ import LoginContainer from '../components/MainContainer';
 import LoginPageContainer from '../components/PageContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
-import { usePrivatePage } from '../hooks/usePrivatePage';
 import axios from 'axios';
-import links from '../utils/links';
+import { baseUrlAPI } from '../utils/links';
 import styled from 'styled-components';
 
 
@@ -35,7 +34,6 @@ const ContentContainer = styled(Content)`
 
 const Login = () => {
     useChangeTitle("Login");
-    usePrivatePage();
 
     const [ email, onChangeEmail ] = useInputValue("");
     const [ password, onChangePassword ] = useInputValue("");
@@ -49,7 +47,7 @@ const Login = () => {
         }
 
         try {
-            const response = await axios.post(`${links.baseUrlAPI}/login`, body);
+            const response = await axios.post(`${baseUrlAPI}/login`, body);
             sessionStorage.setItem('token', response.data.token);
             history.replace("/admin");
         } catch(error) {

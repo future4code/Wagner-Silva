@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import useChangeTitle from '../hooks/useChangeTitle';
 import colors from '../utils/colors';
-import links from '../utils/links';
+import { logo } from '../utils/links';
 import styled from 'styled-components';
 
 const HomePageContainer = styled.div`
@@ -77,13 +77,13 @@ const Home = () => {
     
     let history = useHistory();
     const goToRegisterPage = () => history.push("/register");
-    const goToTripsListPage = () => history.push("/trips");
+    const goToTripsListPage = () => history.push("/candidature");
 
     return (
         <HomePageContainer>
             <Header login={true} />
             <LogoContainer>
-                <Logo src={links.logo} />
+                <Logo src={logo} />
             </LogoContainer>
             <InfoContainer>
                 <h1>Quebrando as barreiras do turismo</h1>

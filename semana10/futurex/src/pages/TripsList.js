@@ -12,7 +12,7 @@ import TripsRegistered from '../components/ItemsRegistered';
 import useChangeTitle from '../hooks/useChangeTitle';
 import { usePrivatePage } from '../hooks/usePrivatePage';
 import axios from 'axios';
-import links from '../utils/links';
+import { baseUrlAPI } from '../utils/links';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -59,7 +59,7 @@ const TripsList = () => {
     
     useEffect(() => {
         axios
-            .get(`${links.baseUrlAPI}/trips`)
+            .get(`${baseUrlAPI}/trips`)
             .then( response => {
                 setTrips(response.data.trips);
             })
@@ -67,7 +67,7 @@ const TripsList = () => {
     })
 
     let history = useHistory();
-    const goToTripDetails = (id) => history.push(`/trips/${id}/candidature`);
+    const goToTripDetails = (id) => history.push(`/admin/trips/${id}`);
 
     const tripsList = trips.map( trip => {
         return (
@@ -80,14 +80,14 @@ const TripsList = () => {
                     <p>{trip.planet}</p>
                 </PlanetContainer>
                 <p>{`${trip.durationInDays} ${trip.durationInDays > 1 ? 'dias' : 'dia'}`}</p>
-                <ButtonDetails onClick={() => goToTripDetails(trip.id)}>Candidatura</ButtonDetails>
+                <ButtonDetails onClick={() => goToTripDetails(trip.id)}>Detalhes</ButtonDetails>
             </Trip>
         )
     })
 
     return (
         <TripsListPageContainer>
-            <Header logo={true} center={true} />
+            <Header logo={true} />
             <TripsListContainer>
                 <ContentContainer>
                     <ContentHeader>

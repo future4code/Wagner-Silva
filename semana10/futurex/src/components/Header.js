@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import colors from '../utils/colors';
-import links from '../utils/links';
+import { logo } from '../utils/links';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
@@ -69,17 +69,22 @@ const Button = styled.button`
 const Header = (props) => {
     let history = useHistory();
 
-    const goToLoginPage = () => {
+    const login = () => {
         history.push("/login")
+    }
+
+    const exit = () => {
+        sessionStorage.removeItem("token");
+       login();
     }
 
     return (
         <HeaderContainer>
             <LogoContainer>
-                {props.logo ? <Logo src={links.logo} /> : null}
+                {props.logo ? <Logo src={logo} /> : null}
             </LogoContainer>
             {props.center ? null : <ButtonLoginContainer>
-                                        {props.login ? <Button onClick={goToLoginPage}>LOGIN</Button> : <Button onClick={goToLoginPage}>SAIR</Button>}
+                                        {props.login ? <Button onClick={login}>LOGIN</Button> : <Button onClick={exit}>SAIR</Button>}
                                     </ButtonLoginContainer>
             }
         </HeaderContainer>

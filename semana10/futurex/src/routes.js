@@ -19,6 +19,9 @@ const Routes = () => {
                 <Route exact path={"/"}>
                     <Home />
                 </Route>
+                <Route path={"/candidature"}>
+                    <SubmitCandidature />
+                </Route>
                 <Route exact path={"/login"}>
                     <Login />
                 </Route>
@@ -28,23 +31,14 @@ const Routes = () => {
                 <Route exact path={"/admin"}>
                     <Admin />
                 </Route>
-                <Route exact path={"/trips"}>
-                    <TripsList />
-                </Route>
                 <Route exact path={"/admin/trips"}>
                     <TripsList />
                 </Route>
                 <Route path={"/admin/trips/create"}>
                     <CreateTrip />
                 </Route>
-                <Route exact path={"/trips/:trip_id"}>
-                    <TripDetails />
-                </Route>
                 <Route exact path={"/admin/trips/:trip_id"}>
                     <TripDetails />
-                </Route>
-                <Route path={"/trips/:trip_id/candidature"}>
-                    <SubmitCandidature />
                 </Route>
                 <Route exact path={"/admin/trips/:trip_id/candidates"}>
                     <CandidatesList />

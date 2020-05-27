@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 export const usePrivatePage = () => {
     const history = useHistory();
 
-    useEffect( () => {
+    useLayoutEffect( () => {
         const token = sessionStorage.getItem("token");
 
         if(token === null) {

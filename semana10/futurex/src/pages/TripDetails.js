@@ -12,6 +12,7 @@ import TripDetailsPageContainer from '../components/PageContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import { usePrivatePage } from '../hooks/usePrivatePage';
 import axios from 'axios';
+import { baseUrlAPI } from '../utils/links';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -54,33 +55,43 @@ const TripDetails = () => {
 
     useEffect(() => {
         axios
-            .get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/wagner/trip/${pathParams.trip_id}`)
+            .get(`${baseUrlAPI}/trip/${pathParams.trip_id}`, {
+                headers: {
+                    auth: sessionStorage.getItem("token")
+                }
+            })
             .then( response => {
-                setTrip(response.data)
+                setTrip(response.data.trip);
             })
     })
 
+    const listCandidates = () => {
+        if(trip) {
+            history.push(`/admin/trips/${pathParams.trip_id}/candidates`);
+        }
+    }
+
     return (
         <TripDetailsPageContainer>
-            <Header logo={true} center={true} />
+            <Header logo={true} />
             <TripDetailsContainer>
                 <Trip>
                     <Details>
                         <InfoContainer>
-                            <h3>Nome viagem</h3>
-                            <p>Planeta</p>
+                            <h3>{trip.name}</h3>
+                            <p>{trip.planet}</p>
                             <DurationContainer>
-                                <p><strong>Data</strong></p>
-                                <p><strong>Duração</strong></p>
+                                <p><strong>Data:</strong> {trip.date}</p>
+                                <p><strong>Duração:</strong> {trip.durationInDays} {trip.durationInDays > 1 ? "dias" : "dia"}</p>
                             </DurationContainer>
                         </InfoContainer>
                         <DescriptionContainer>
                             <Line />
-                            <h4>Descrição</h4>
-                            <DescriptionText>kowngowrngopqrgnp</DescriptionText>
+                            <h4>Descrição:</h4>
+                            <DescriptionText>{trip.description}</DescriptionText>
                         </DescriptionContainer>
                     </Details>
-                    <ButtonCandidate>QUERO ENTRAR NESSA</ButtonCandidate>
+                    <ButtonCandidate onClick={listCandidates}>Ver Candidatos</ButtonCandidate>
                 </Trip>
             </TripDetailsContainer>
         </TripDetailsPageContainer>

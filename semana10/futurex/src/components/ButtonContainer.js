@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const ButtonContainer = (props) => {
     return (
-        <Container>
+        <Container className={props.className}>
             {props.children}
         </Container>
     )
