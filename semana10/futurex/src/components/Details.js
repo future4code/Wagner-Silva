@@ -11,7 +11,7 @@ const DetailsContainer = styled.section`
 
 const Details = (props) => {
     return (
-        <DetailsContainer>
+        <DetailsContainer className={props.className}>
             {props.children}
         </DetailsContainer>
     )

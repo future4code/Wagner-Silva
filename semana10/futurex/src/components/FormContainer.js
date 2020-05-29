@@ -7,12 +7,12 @@ const Container = styled.form`
     align-items: center;
     justify-content: center;
     width: 90%;
-    height: 70%;
+    height: 90%;
 `
 
 const FormContainer = (props) => {
     return (
-        <Container>
+        <Container className={props.className} onSubmit={props.onSubmit}>
             {props.children}
         </Container>
     )

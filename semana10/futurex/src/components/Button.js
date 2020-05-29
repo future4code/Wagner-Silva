@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const ButtonElement = styled.button`
     background-color: ${colors.blackLight};
     width: 30%;
-    height: 50%;
+    height: 40%;
     border: 1px solid ${colors.orangeDark};
     border-radius: 20px;
     font-family: 'Lato', sans-serif;

@@ -21,6 +21,7 @@ const LogoContainer = styled.div`
     height: 100%;
     position: absolute;
     z-index: 1;
+    cursor: pointer;
 
     @media (min-width: 320px) and (max-width: 420px) {
         width: 20%;
@@ -78,9 +79,11 @@ const Header = (props) => {
        login();
     }
 
+    const goToHomePage = () => history.push("/")
+
     return (
-        <HeaderContainer>
-            <LogoContainer>
+        <HeaderContainer className={props.className}>
+            <LogoContainer onClick={goToHomePage}>
                 {props.logo ? <Logo src={logo} /> : null}
             </LogoContainer>
             {props.center ? null : <ButtonLoginContainer>

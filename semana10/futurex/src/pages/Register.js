@@ -41,7 +41,9 @@ const Register = () => {
 
     let history = useHistory();
 
-    const register = async () => {
+    const register = async (event) => {
+        event.preventDefault();
+        
         if(password === confirmPassword) {
             const body = {
                 email,
@@ -70,7 +72,7 @@ const Register = () => {
                     <ContentHeader>
                         <h1>Cadastro</h1>    
                     </ContentHeader>
-                    <FormContainer>
+                    <FormContainer onSubmit={register}>
                         <InputContainer>
                             <label>Email:</label>
                             <Input type={"email"} value={email} onChange={onChangeEmail} />
@@ -83,10 +85,10 @@ const Register = () => {
                             <label>Confirme sua senha:</label>
                             <Input type={"password"} value={confirmPassword} onChange={onChangeConfirmPassword} />
                         </InputContainer>
+                        <ButtonRegisterContainer>
+                            <Button type={"submit"}>CADASTRAR</Button>
+                        </ButtonRegisterContainer>
                     </FormContainer>
-                    <ButtonRegisterContainer>
-                        <Button onClick={register}>CADASTRAR</Button>
-                    </ButtonRegisterContainer>
                 </ContentContainer>
             </RegisterContainer>
         </RegisterPageContainer>

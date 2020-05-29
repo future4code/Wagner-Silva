@@ -4,35 +4,42 @@ import Button from '../components/Button';
 import ButtonContainer from '../components/ButtonContainer';
 import ContentContainer from '../components/ContentContainer';
 import ContentHeader from '../components/ContentHeader';
+import Details from '../components/Details';
 import DescriptionContainer from '../components/DescriptionContainer';
 import DurationContainer from '../components/SingleLineContainer';
-import FormContainer from '../components/FormContainer';
-import Header from '../components/Header';
+import Form from '../components/FormContainer';
+import HeaderContainer from '../components/Header';
 import InfoContainer from '../components/InfoContainer';
 import Input from '../components/Input';
 import InputContainer from '../components/InputContainer';
-import SubmitCandidaturePageContainer from '../components/PageContainer';
+import PageContainer from '../components/PageContainer';
+import Select from '../components/Select';
+import SelectCountry from '../components/SelectCountry';
 import SubmitCandidatureContainer from '../components/MainContainer';
-import TripInformations from '../components/Details';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
 import axios from 'axios';
-import colors from '../utils/colors';
 import { baseUrlAPI } from '../utils/links';
 import styled from 'styled-components';
 
-
-const TextArea = styled.textarea`
-    width: 100%;
-    height: 50%;
-    border: 1px solid ${colors.blackLight};
-    border-radius: 5px;
+const Header = styled(HeaderContainer)`
+    height: 7.5%;
 `
-const Select = styled.select`
-    width: 90%;
-    height: 40%;
-    border: 1px solid ${colors.blackLight};
-    border-radius: 5px;
+
+const SubmitCandidaturePageContainer = styled(PageContainer)`
+    height: 150vh;
+`
+
+const FormContainer = styled(Form)`
+    justify-content: flex-start;
+`
+
+const InputContainerCandidature = styled(InputContainer)`
+    height: 10%;
+`
+
+const TripInformations = styled(Details)`
+    height: 20%;
 `
 
 const ButtonSubmitContainer = styled(ButtonContainer)`
@@ -40,6 +47,7 @@ const ButtonSubmitContainer = styled(ButtonContainer)`
 `
 
 const DescriptionText = styled.p`
+    margin-top: 5%;
     align-self: flex-start;
 `
 
@@ -53,7 +61,6 @@ const SubmitCandidature = () => {
     const [country, onChangeCountry] = useInputValue("");
     const [trip, onChangeTrip] = useInputValue("");
     const [tripsList, setTripsList] = useState([]);
-    const [onCandidatureText, setOnCandidatureText] = useState(false);
 
     let history = useHistory();
 
@@ -90,26 +97,24 @@ const SubmitCandidature = () => {
                                     </DescriptionContainer>
                                 </TripInformations>
 
-    const registerCandidature = async () => {
-        if(!onCandidatureText) {
-            setOnCandidatureText(true);
-        } else {
-            if(trip) {
-                const body = {
-                    name: candidateName,
-                    age,
-                    profession,
-                    country,
-                    applicationText: candidateText
-                }
+    const registerCandidature = async (event) => {
+        event.preventDefault();
 
-                try {
-                    await axios.post(`${baseUrlAPI}/trips/${trip}/apply`, body);
-                    alert("Sua candidatura foi registrada. Em breve você saberá o resultado.")
-                    history.goBack();
-                } catch(error) {
-                    alert("Erro ao cadastrar candidatura");
-                }
+        if(trip) {
+            const body = {
+                name: candidateName,
+                age,
+                profession,
+                country,
+                applicationText: candidateText
+            }
+
+            try {
+                await axios.post(`${baseUrlAPI}/trips/${trip}/apply`, body);
+                alert("Sua candidatura foi registrada. Em breve você saberá o resultado.")
+                history.goBack();
+            } catch(error) {
+                alert("Erro ao cadastrar candidatura");
             }
         }
     }
@@ -118,51 +123,86 @@ const SubmitCandidature = () => {
         return <option value={trip.id}>{trip.name}</option>
     })
 
-    const infoForm = <FormContainer>
-                        <InputContainer>
-                            <label>Nome:</label>
-                            <Input type={"text"} value={candidateName} onChange={onChangeCandidateName} />
-                        </InputContainer>
-                        <InputContainer>
-                            <label>Idade:</label>
-                            <Input type={"number"} value={age} onChange={onChangeAge} />
-                        </InputContainer>
-                        <InputContainer>
-                            <label>Profissão:</label>
-                            <Input type={"text"} value={profession} onChange={onChangeProfession} />
-                        </InputContainer>
-                        <InputContainer>
-                            <label>País:</label>
-                            <Input type={"text"} value={country} onChange={onChangeCountry} />
-                        </InputContainer>
-                        <InputContainer>
-                            <label>Viagem:</label>
-                            <Select value={trip} onChange={onChangeTrip}>
-                                {tripsOptions}
-                            </Select>
-                        </InputContainer>
-                    </FormContainer>
-
-    const candidatureTextForm = <FormContainer>
-                                    {tripInfoContainer}
-                                    <InputContainer>
-                                        <label>Quais motivos para a FutureX aceitá-lo ?</label>
-                                    </InputContainer>
-                                    <TextArea rows={10} value={candidateText} onChange={onChangeCandidateText} />
-                                </FormContainer>
 
     return (
         <SubmitCandidaturePageContainer>
-            <Header logo={true} />
+            <Header logo={true} center={true} />
             <SubmitCandidatureContainer>
                 <ContentContainer>
                     <ContentHeader>
                         <h3>Candidatura</h3>
                     </ContentHeader>
-                        { !onCandidatureText ? infoForm : candidatureTextForm}
-                    <ButtonSubmitContainer>
-                        <Button onClick={registerCandidature}>{!onCandidatureText ? "CONTINUAR" : "ENVIAR" }</Button>
-                    </ButtonSubmitContainer>
+                    <FormContainer onSubmit={registerCandidature}>
+                        <InputContainerCandidature>
+                            <label forHtml={"candidate-name"}>Nome:</label>
+                            <Input
+                                id={"candidate-name"}
+                                type={"text"}
+                                value={candidateName}
+                                pattern={"[A-Za-zÁÃÀÂÉÊÍÓÔÚáãàâéêíóôú ]{3,}"}
+                                onChange={onChangeCandidateName}
+                                required
+                            />
+                        </InputContainerCandidature>
+                        <InputContainerCandidature>
+                            <label forHtml={"candidate-age"}>Idade:</label>
+                            <Input
+                                id={"candidate-age"}
+                                type={"number"}
+                                value={age}
+                                min={18}
+                                onChange={onChangeAge}
+                                required
+                            />
+                        </InputContainerCandidature>
+                        <InputContainerCandidature>
+                            <label forHtml={"candidate-profession"}>Profissão:</label>
+                            <Input
+                                id={"candidate-profession"}
+                                type={"text"}
+                                value={profession}
+                                pattern={"[A-Za-zÁÃÀÂÉÊÍÓÔÚáãàâéêíóôú ]{10,}"}
+                                onChange={onChangeProfession}
+                                required
+                            />
+                        </InputContainerCandidature>
+                        <InputContainerCandidature>
+                            <label forHtml={"candidate-country"}>País:</label>
+                            <SelectCountry
+                                id={"candidate-country"} 
+                                type={"text"}
+                                value={country}
+                                onChange={onChangeCountry}
+                                required
+                            />
+                        </InputContainerCandidature>
+                        <InputContainerCandidature>
+                            <label forHtml={"trip-choosed"}>Viagem:</label>
+                            <Select
+                                id={"trip-choosed"}
+                                value={trip}
+                                onChange={onChangeTrip}
+                                required
+                            >
+                                {tripsOptions}
+                            </Select>
+                        </InputContainerCandidature>
+                        {tripInfoContainer}
+                        <InputContainerCandidature>
+                            <label forHtml={"candidate-text"}>Quais motivos para a FutureX aceitá-lo ?</label>
+                            <Input
+                                id={"candidate-text"} 
+                                type={"text"}
+                                value={candidateText}
+                                pattern={"[A-Za-zÁÃÀÂÉÊÍÓÔÚáãàâéêíóôú0-9 ]{30,}"}
+                                onChange={onChangeCandidateText}
+                                required
+                            />
+                        </InputContainerCandidature>
+                        <ButtonSubmitContainer>
+                            <Button type={"submit"}>ENVIAR</Button>
+                        </ButtonSubmitContainer>
+                    </FormContainer>
                 </ContentContainer>
             </SubmitCandidatureContainer>
         </SubmitCandidaturePageContainer>

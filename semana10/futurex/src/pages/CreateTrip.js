@@ -13,6 +13,8 @@ import InputContainer from '../components/InputContainer';
 import useChangeTitle from '../hooks/useChangeTitle';
 import useInputValue from '../hooks/useInputValue';
 import { usePrivatePage } from '../hooks/usePrivatePage';
+import axios from 'axios';
+import { baseUrlAPI } from '../utils/links';
 import colors from '../utils/colors';
 import styled from 'styled-components';
 
@@ -35,10 +37,33 @@ const CreateTrip = () => {
 
     let history = useHistory();
 
-    const saveTrip = () => history.goBack();
+    const saveTrip = async (event) => {
+        event.preventDefault();
+
+        const body = {
+            name: tripName,
+            planet,
+            date,
+            description,
+            durationInDays: duration
+        }
+
+        try {
+            await axios.post(`${baseUrlAPI}/trips`, body, {
+                headers: {
+                    auth: sessionStorage.getItem("token")
+                }
+            });
+
+            history.goBack();
+            alert("Viagem criada com sucesso!");
+        } catch(error) {
+            alert("Erro na criação da viagem.")
+        }
+    }
 
     const planets = ["Mercúrio", "Vênus", "Marte", "Júpiter", "Saturno", "Urano", "Netuno"].map( option => {
-        return <option value={option.toLowerCase()}>{option}</option>
+        return <option value={option}>{option}</option>
     })
 
     return (
@@ -49,36 +74,62 @@ const CreateTrip = () => {
                     <ContentHeader>
                         <h3>Criar viagem</h3>
                     </ContentHeader>
-                    <FormContainer>
+                    <FormContainer onSubmit={saveTrip}>
                         <InputContainer>
                             <label forHtml={"trip-name"}>Nome da viagem:</label>
                             <Input id={"trip-name"}
                                 type={"text"}
-                                value={tripName} 
+                                value={tripName}
+                                pattern={"[A-Za-zÁÃÀÂÉÊÍÓÔÚáãàâéêíóôú ]{5,}"}
                                 onChange={onChangeTripName}
                                 required={true}
                             />
                         </InputContainer>
                         <InputContainer>
-                            <label>Planeta:</label>
-                            <Select value={planet} onChange={onChangePlanet}>
+                            <label forHtml={"planet"}>Planeta:</label>
+                            <Select
+                                id={"planet"}
+                                value={planet}
+                                onChange={onChangePlanet}
+                            >
                                 {planets}
                             </Select>
                         </InputContainer>
                         <InputContainer>
-                            <label>Data:</label>
-                            <Input type={"date"} value={date} onChange={onChangeDate} />
+                            <label forHtml={"date"}>Data:</label>
+                            <Input
+                                id={"date"}
+                                type={"date"}
+                                value={date}
+                                min={new Date().toISOString().split("T")[0]}
+                                onChange={onChangeDate}
+                                required
+                            />
                         </InputContainer>
                         <InputContainer>
-                            <label>Descrição:</label>
-                            <Input type={"text"} value={description} onChange={onChangeDescription} />
+                            <label forHtml={"description"}>Descrição:</label>
+                            <Input
+                                id={"description"}
+                                type={"text"}
+                                value={description}
+                                pattern={"[A-Za-zÁÃÀÂÉÊÍÓÔÚáãàâéêíóôú0-9 ]{30,}"}
+                                onChange={onChangeDescription}
+                                required
+                            />
                         </InputContainer>
                         <InputContainer>
-                            <label>Duração:</label>
-                            <Input type={"number"} value={duration} onChange={onChangeDuration} />
+                            <label forHtml={"duration"}>Duração:</label>
+                            <Input
+                                id={"duration"}
+                                type={"number"}
+                                value={duration}
+                                min={50}
+                                onChange={onChangeDuration}
+                                required
+                            />
                         </InputContainer>
                         <ButtonLoginContainer>
-                            <Button onSubmit={saveTrip}>CRIAR</Button>
+                            <Button type={"submit"}>CRIAR</Button>
                         </ButtonLoginContainer>
                     </FormContainer>
                 </ContentContainer>

@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const MainContainer = (props) => {
     return (
-        <Container>
+        <Container className={props.className}>
             {props.children}
         </Container>
     )
