@@ -1,4 +1,5 @@
 import React from 'react';
+import colors from '../utils/colors';
 import styled from 'styled-components' ;
 import weekDays from '../utils/weekDays';
 
@@ -11,6 +12,7 @@ const HeaderContainer = styled.header`
     grid-template-columns: 20% 40% 40%;
     width: 100%;
     height: 10%;
+    color: ${colors.backgroundWhite}
 `
 
 const Logo = styled.img`
@@ -21,37 +23,37 @@ const Logo = styled.img`
 const AddTaskContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
 `
 
 const Input = styled.input`
     width: 50%;
-    height: 30%;
+    height: 50%;
 `
 
 const WeekDays = styled.select`
     width: 20%;
-    height: 20%;
+    height: 45%;
 `
 
 const AddTaskButton = styled.button`
     width: 10%;
-    height: 20%;
+    height: 45%;
 `
 
 const FilterContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: space-around;
+    width: 50%;
     height: 100%;
 `
 
 const Filter = styled.select`
-    width: 80%;
-    height: 20%;
+    width: 75%;
+    height: 30%;
 `
 
 const Header = (props) => {
@@ -66,7 +68,7 @@ const Header = (props) => {
                         return <option key={option} value={option}>{option}</option>
                     });
 
-    const filterOptions = ["Todas as tarefas", "Pendentes", "Conpletas"].map( (option, index) => {
+    const filterOptions = ["Todas as tarefas", "Pendentes", "Completas"].map( (option, index) => {
         if(index === 0) {
             return <option key={option} value={""}>{option}</option>
         }
@@ -77,16 +79,26 @@ const Header = (props) => {
         <HeaderContainer data-testid={"header"}>
             <Logo src={logo} alt={"Logo WeekPlann"}/>
             <AddTaskContainer>
-                <label forhtml={'add-task'}>Nova tarefa:</label>
-                <Input type={"text"} placeholder={"Adicione uma tarefa"} id={"add-task"} />
-                <WeekDays>
+                <label htmlFor={'add-task'}>Nova tarefa:</label>
+                <Input 
+                    type={"text"}
+                    value={props.taskText}
+                    onChange={props.onChangeTaskText}
+                    placeholder={"Adicione uma tarefa"}
+                    id={"add-task"}
+                />
+                <WeekDays value={props.weekDay} onChange={props.onChangeWeekDay}>
                     {weekDaysOptions}
                 </WeekDays>
-                <AddTaskButton data-testid={"add-task-button"}>Adicionar</AddTaskButton>
+                <AddTaskButton onClick={props.addTask} data-testid={"add-task-button"}>Adicionar</AddTaskButton>
             </AddTaskContainer>
             <FilterContainer>
-                <label forhtml={'filter'}>Filtros:</label>
-                <Filter id={"filter"}>
+                <label htmlFor={'filter'}>Filtros:</label>
+                <Filter
+                    value={props.filterValue}
+                    onChange={props.onChangeFilterValue}
+                    id={"filter"}
+                >
                     {filterOptions}
                 </Filter>
             </FilterContainer>
