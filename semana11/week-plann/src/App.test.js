@@ -1,8 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom/extend-expect'
 import App from './App';
 import axios from 'axios';
+import { baseUrl } from './utils/links';
 
 axios.get = jest.fn().mockResolvedValue({ data: {} });
 axios.post = jest.fn().mockResolvedValue();
@@ -64,14 +66,12 @@ describe("Renderização inicial", () => {
 
     const { findByText } = render(<App />);
 
-    expect(axios.get).toHaveBeenCalled();
-    expect(await findByText("Testar mocks")).toBeInTheDocument();
-    expect(await findByText("Terminar projeto")).toBeInTheDocument();
+    expect(axios.get).toHaveBeenCalledWith(baseUrl);
   });
 });
 
-describe("Testes do header", async () => {
-  test("Input funcionando corretamente", () => {
+describe("Testes do header", () => {
+  test("Input funcionando corretamente", async () => {
     const { getByPlaceholderText } = render(<App />);
     const input = getByPlaceholderText("Adicione uma tarefa");
 
@@ -100,7 +100,7 @@ describe("Testes do header", async () => {
     expect(select).toHaveValue("Completas");
   });
 
-  test("Botão que adiciona tarefa funcionando corretamente", () => {
+  test("Botão que adiciona tarefa funcionando corretamente", async () => {
     axios.get = jest.fn().mockResolvedValue({
       data: [
         {
