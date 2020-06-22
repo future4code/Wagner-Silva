@@ -5,7 +5,7 @@ type Post = {
 
 const posts: Post[] = [
     { author: "Wagner", text: "TypeScript é legal" },
-    { author: "Soter", text: "Tchuptchura" },
+    { author: "Soter", text: "Tchaptchura" },
     { author: "Bob", text: "Is this love ?"},
     { author: "Wagner", text: "TypeScript é bem legal mesmo"},
     { author: "Wagner", text: "Vou tentar usar TS no React"}
