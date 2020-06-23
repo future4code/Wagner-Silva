@@ -1,0 +1,2 @@
+Projeto de manipular arquivos
+TypeScript é muito massa mesmo!
