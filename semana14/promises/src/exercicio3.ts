@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { utils } from './utils';
-import { SrvRecord } from 'dns';
 
 /* 
  *  a. Não houve nenhum erro de tipagem, inclusive a função continua funcionando
