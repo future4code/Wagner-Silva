@@ -7,7 +7,7 @@ const UserController: any = {
             
             return response.json(users);
         } catch {
-            return response.status(400).json({ error: "Error" });
+            return response.status(400).json({ success: false });
         }
 
     },
