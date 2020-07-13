@@ -5,18 +5,34 @@ import { User } from '../data/User';
 export const UserController = {
     login: async (request: any, response: any): Promise<void> => {
         const { email, password } = request.body;
-        const user: User = new User();
+        const userDb: User = new User();
         try {
-            const userLogin = await user.getUserByEmail(email);
+            const user = await userDb.getUserByEmail(email);
     
-            if(password !== userLogin.password) {
+            if(password !== user.password) {
                 return response.json({ error: "Senha incorreta" });
             }
 
             const authenticator: Authenticator = new Authenticator();
-            const token: string = authenticator.generateToken({ id: userLogin.id });
+            const token: string = authenticator.generateToken({ id: user.id });
 
             return response.json({ token });
+        } catch {
+            return response.json({ success: false });
+        }
+    },
+
+    show: async (request: any, response: any): Promise<void> => {
+        const token: string = request.headers.token as string;
+        const authenticator = new Authenticator();
+        const authenticationData = authenticator.getData(token);
+
+        const userDb: User = new User();
+        
+        try {
+            const user = await userDb.getUserById(authenticationData.id);
+
+            return response.json({ id: user.id, email: user.email });
         } catch {
             return response.json({ success: false });
         }
@@ -36,13 +52,13 @@ export const UserController = {
         const idGenerator: IdGenerator = new IdGenerator();
         const id: string = idGenerator.generate();
 
-        const user: User = new User();
+        const userDb: User = new User();
 
         try {
             const authenticator = new Authenticator();
             const token = authenticator.generateToken({ id });
 
-            user.createUser(id, email, password);
+            userDb.createUser(id, email, password);
 
             return response.json({ token });
         } catch {

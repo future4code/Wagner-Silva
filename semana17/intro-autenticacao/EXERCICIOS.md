@@ -28,5 +28,15 @@ estamos utilizando variáveis ambiente através do _dotenv_, é preciso fazer es
 **Exercício 4**\
 Apenas exercícios de código.
 
-**Exercício 5**
+**Exercício 5**\
+Apenas exercícios de código.
+
+**Exercício 6**\
+Apenas exercícios de código.
+
+**Exercício 7**\
+a) Pois sem colocar o _as any_ o TypeScript não sabe exatamente o que _payload_ é e fica\
+reclamando na compilação.
+
+**Exercício 8**\
 Apenas exercícios de código.

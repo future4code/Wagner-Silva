@@ -10,7 +10,13 @@ export class User {
     }
 
     public async getUserByEmail(email: string): Promise<any> {
-        const user = await knex.select('*').from('UserAuthentication').where({ email });
-        return user[0];
+        const result = await knex.select('*').from('UserAuthentication').where({ email });
+        return result[0];
+    }
+
+    public async getUserById(id: string): Promise<any> {
+        const result = await knex.select('*').from('UserAuthentication').where({ id });
+
+        return result[0];
     }
 }
