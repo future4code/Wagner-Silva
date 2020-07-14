@@ -1,10 +1,11 @@
+import { Request, Response } from 'express';
 import { Authenticator } from '../service/Authenticator';
 import { HashManager } from '../service/HashManager';
 import { IdGenerator } from '../service/IdGenerator';
 import { User } from '../data/User';
 
 export const UserController = {
-    login: async (request: any, response: any): Promise<void> => {
+    login: async (request: Request, response: Response): Promise<Response> => {
         const { email, password } = request.body;
         const userDb: User = new User();
         try {
@@ -27,7 +28,7 @@ export const UserController = {
         }
     },
 
-    show: async (request: any, response: any): Promise<void> => {
+    show: async (request: Request, response: Response): Promise<Response> => {
         const token: string = request.headers.token as string;
         const authenticator = new Authenticator();
         const authenticationData = authenticator.getData(token);
@@ -45,7 +46,7 @@ export const UserController = {
         }
     },
 
-    store: async (request: any, response: any): Promise<void> => {
+    store: async (request: Request, response: Response): Promise<Response> => {
         const { email, password, role } = request.body;
 
         if(email.length === 0 || email.indexOf('@') === -1) {
@@ -73,5 +74,22 @@ export const UserController = {
             return response.json({ token });
         } catch {
             return response.json({ success: false });        }
+    },
+
+    destroy: async (request: Request, response: Response): Promise<Response> => {
+        const { id } = request.params;
+        const token: string = request.headers.token as string;
+        const authenticator = new Authenticator();
+        const authenticationData = authenticator.getData(token);
+        const userDb = new User(); 
+
+        if(authenticationData.role !== 'admin') return response.status(401).json({ error: "Não autorizado" });
+
+        try {
+            await userDb.deleteUser(id);
+            return response.json({ success: true });
+        } catch {
+            return response.json({ success: false });
+        }
     }
 }

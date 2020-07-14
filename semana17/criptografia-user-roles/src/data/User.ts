@@ -19,4 +19,8 @@ export class User {
 
         return result[0];
     }
+
+    public async deleteUser(id: string): Promise<void> {
+        await knex.delete().from('UserAuthentication').where({ id });
+    }
 }
