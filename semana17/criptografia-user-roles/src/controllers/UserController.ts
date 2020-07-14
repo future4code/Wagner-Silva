@@ -28,7 +28,7 @@ export const UserController = {
         }
     },
 
-    show: async (request: Request, response: Response): Promise<Response> => {
+    profile: async (request: Request, response: Response): Promise<Response> => {
         const token: string = request.headers.token as string;
         const authenticator = new Authenticator();
         const authenticationData = authenticator.getData(token);
@@ -39,6 +39,22 @@ export const UserController = {
             const user = await userDb.getUserById(authenticationData.id);
 
             if(user.role !== "normal") return response.status(401).json({ error: "Não autorizado" });
+
+            return response.json({ id: user.id, email: user.email });
+        } catch {
+            return response.json({ success: false });
+        }
+    },
+
+    show: async (request: Request, response: Response): Promise<Response> => {
+        const token: string = request.headers.token as string;
+        const { id } = request.params;
+        
+        try {
+            const authenticator = new Authenticator();
+            authenticator.getData(token);
+            const userDb: User = new User();
+            const user = await userDb.getUserById(id);
 
             return response.json({ id: user.id, email: user.email });
         } catch {
