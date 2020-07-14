@@ -5,7 +5,7 @@ import { AuthenticationData } from './AuthenticationData';
 dotenv.config();
 
 export class Authenticator {
-    private static EXPIRES_IN = "1min";
+    private static EXPIRES_IN = "10min";
 
     public generateToken(input: AuthenticationData): string {
         const token = jwt.sign(

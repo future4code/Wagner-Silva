@@ -37,6 +37,8 @@ export const UserController = {
         try {
             const user = await userDb.getUserById(authenticationData.id);
 
+            if(user.role !== "normal") return response.status(401).json({ error: "Não autorizado" });
+
             return response.json({ id: user.id, email: user.email });
         } catch {
             return response.json({ success: false });

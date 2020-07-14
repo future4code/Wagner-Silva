@@ -18,3 +18,6 @@ que já possuem a manipulação correta dos dados criptografados.\
 **Exercício 3**\
 Apenas exercícios de código.\
 
+**Exercício 4**\
+Apenas exercícios de código.\
+
