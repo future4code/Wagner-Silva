@@ -1,4 +1,5 @@
 import { Authenticator } from '../service/Authenticator';
+import { HashManager } from '../service/HashManager';
 import { IdGenerator } from '../service/IdGenerator';
 import { User } from '../data/User';
 
@@ -8,8 +9,9 @@ export const UserController = {
         const userDb: User = new User();
         try {
             const user = await userDb.getUserByEmail(email);
+            const hashManager: HashManager = new HashManager();
     
-            if(password !== user.password) {
+            if(! await hashManager.compare(password, user.password)) {
                 return response.json({ error: "Senha incorreta" });
             }
 
@@ -50,6 +52,7 @@ export const UserController = {
         }
 
         const idGenerator: IdGenerator = new IdGenerator();
+        const hashManager: HashManager = new HashManager();
         const id: string = idGenerator.generate();
 
         const userDb: User = new User();
@@ -58,7 +61,9 @@ export const UserController = {
             const authenticator = new Authenticator();
             const token = authenticator.generateToken({ id });
 
-            userDb.createUser(id, email, password);
+            const hashPassword: string = await hashManager.hash(password);
+
+            userDb.createUser(id, email, hashPassword);
 
             return response.json({ token });
         } catch {

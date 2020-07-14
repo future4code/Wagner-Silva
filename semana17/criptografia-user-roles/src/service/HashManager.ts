@@ -13,6 +13,7 @@ export class HashManager {
     }
 
     public async compare(text: string, hash: string): Promise<boolean> {
-        return await bcrypt.compare(text, hash);
+        const result: boolean = await bcrypt.compare(text, hash);
+        return result;
     }
 }
