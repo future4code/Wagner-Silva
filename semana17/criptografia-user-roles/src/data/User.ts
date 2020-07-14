@@ -1,8 +1,11 @@
-import knex from '../database/config';
+import { BaseDatabase } from './BaseDatabase';
 
-export class User {
+export class User extends BaseDatabase {
+    constructor() {
+        super();
+    }
     public async createUser(id: string, email: string, password: string): Promise<void> {
-        await knex.insert({
+        await this.getConnection().insert({
             id,
             email,
             password,
@@ -10,17 +13,17 @@ export class User {
     }
 
     public async getUserByEmail(email: string): Promise<any> {
-        const result = await knex.select('*').from('UserAuthentication').where({ email });
+        const result = await this.getConnection().select('*').from('UserAuthentication').where({ email });
         return result[0];
     }
 
     public async getUserById(id: string): Promise<any> {
-        const result = await knex.select('*').from('UserAuthentication').where({ id });
+        const result = await this.getConnection().select('*').from('UserAuthentication').where({ id });
 
         return result[0];
     }
 
     public async deleteUser(id: string): Promise<void> {
-        await knex.delete().from('UserAuthentication').where({ id });
+        await this.getConnection().delete().from('UserAuthentication').where({ id });
     }
 }

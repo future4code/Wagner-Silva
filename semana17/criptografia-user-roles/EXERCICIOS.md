@@ -26,3 +26,6 @@ Apenas exercícios de código.\
 
 **Exercício 6**\
 Apenas exercícios de código.\
+
+**Exercício 7**\
+Apenas exercícios de código.\
