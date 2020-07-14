@@ -14,3 +14,7 @@ a) Primeiramente deve ser modificado o _endpoint_ de **cadastro**, pois até o m
 senha com _hash_ no banco.\
 d) Não. Esse _endpoint_ depende do token, e o token já é dado de acordo com o _login_ e o _cadastro_,\
 que já possuem a manipulação correta dos dados criptografados.\
+
+**Exercício 3**\
+Apenas exercícios de código.\
+

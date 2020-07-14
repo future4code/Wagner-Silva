@@ -16,7 +16,10 @@ export const UserController = {
             }
 
             const authenticator: Authenticator = new Authenticator();
-            const token: string = authenticator.generateToken({ id: user.id });
+            const token: string = authenticator.generateToken({
+                id: user.id,
+                role: user.role
+            });
 
             return response.json({ token });
         } catch {
@@ -41,7 +44,7 @@ export const UserController = {
     },
 
     store: async (request: any, response: any): Promise<void> => {
-        const { email, password } = request.body;
+        const { email, password, role } = request.body;
 
         if(email.length === 0 || email.indexOf('@') === -1) {
             return response.json({ error: "Email inválido: o email não pode ser vazio e deve conter um @" });
@@ -59,7 +62,7 @@ export const UserController = {
 
         try {
             const authenticator = new Authenticator();
-            const token = authenticator.generateToken({ id });
+            const token = authenticator.generateToken({ id, role });
 
             const hashPassword: string = await hashManager.hash(password);
 
