@@ -1,3 +1,5 @@
+import { InvalidParameterError } from '../errors/InvalidParameterError';
+
 const enum UserRole {
     ADMIN = "ADMIN",
     NORMAL = "NORMAL"
@@ -36,8 +38,10 @@ export class User {
         switch(value) {
             case "ADMIN":
                 return UserRole.ADMIN;
-            default:
+            case "NORMAL":
                 return UserRole.NORMAL;
+            default:
+                throw new InvalidParameterError("Invalid user role");
         }
     }
 
@@ -45,8 +49,10 @@ export class User {
         switch(value) {
             case UserRole.ADMIN:
                 return "ADMIN";
-            default:
+            case UserRole.NORMAL:
                 return "NORMAL";
+            default:
+                throw new InvalidParameterError("Invalid user role");
         }
     }
 
